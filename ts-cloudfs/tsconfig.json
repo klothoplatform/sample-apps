@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2019",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "skipLibCheck": true,
+    "strictNullChecks": true, 
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": true,
+    "sourceRoot": "src/"
+  },
+  "exclude": [
+    "**/*.js",
+    "dist/**",
+    "compiled", 
+    "compiledTestOutput", 
+    "static/*",
+    "static/compiler-test-sources/compiled/**",
+    "merger/**"
+    
+  ],
+  "lib": ["ES2019"]
+}
