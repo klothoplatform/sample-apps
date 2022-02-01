@@ -8,10 +8,10 @@ serverless-express-sample
 └───src
 │   │   index.ts
 │   │
-│   └───quotes // example of one lambda for all quote routes
+│   └───quotes // example of an execution unit for all quote routes
 │   │       quotes.ts 
 │   │   
-│   └───users // example of one lambda per user route
+│   └───users // example of a different execution unit per user route
 │           get-users.ts 
 │           post-users.ts
 
