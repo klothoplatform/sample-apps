@@ -4,21 +4,26 @@ import { User, UserInput } from "./user";
 
 @Resolver(of => User)
 export class UserResolver {
-    private user: User[] = []
+  private userStore = new Map<string, User>();
 
   @Query(returns => [User], { nullable: true })
-  async getUser(): Promise<User[]> {
-    return await this.user;
+  async getUsers(): Promise<User[]> {
+    return await Array.from(this.userStore.values());
+  }
+
+  @Query(returns => User, { nullable: true })
+  async getUser(@Arg('userInput') { name }: UserInput): Promise<User> {
+    return await this.userStore.get(name);
   }
 
   @Mutation(returns => User)
-  async addUser(@Arg('userInput') {name}: UserInput): Promise<User> {
+  async addUser(@Arg('userInput') { name }: UserInput): Promise<User> {
     const user = {
-      id: Math.random(),
+      id: Math.floor(Math.random()*100),
       name,
     }
 
-    await this.user.push(user)
+    await this.userStore.set(user.name, user)
     return user;
   }
 }
