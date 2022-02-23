@@ -16,6 +16,7 @@ app.use(express.json())
 const helloPath = "/tmp/hello.txt"
 
 app.get('/', async (req, res) => {
+  await setupRun
   const f = await fs.readFile(helloPath)
   res.send(f.toString("utf-8"))
 });
@@ -35,4 +36,4 @@ async function setup() {
   await fs.writeFile(helloPath, `Startup at ${t.toISOString()}`)
 }
 
-setup()
+const setupRun = setup()
