@@ -18,9 +18,6 @@ export async function scheduledHealthSignal(){
   logger.warn(`Health signal logged at ${Date.now()}`);
 }
 
-/**
- * @capability https_server
- */
  app.listen(3000, async () => {
   console.log(`App listening locally`)
 })
