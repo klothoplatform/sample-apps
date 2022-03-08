@@ -14,7 +14,8 @@ const app = express()
 app.use(express.json())
 
 app.get('/', async (req, res) => {
-  // NOTE: after klo-compile, copy this into the compiled directory to have it uploaded for you on update
+  // NOTE: after klo-compile, copy this 'my_secret.key' into the compiled directory
+  // and the `pulumi up` will upload the secret for you.
   const f = await fs.readFile("my_secret.key")
   res.send(f.toString("utf-8"))
 });
