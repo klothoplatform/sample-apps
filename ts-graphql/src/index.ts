@@ -10,10 +10,12 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./userResolver";
 
-const app = express();
-bootstrap();
+const app = setupApp();
 
-async function bootstrap() {
+async function setupApp() {
+  // Note: this needs to be the same name as what is exported for klotho to figure out what to import.
+  const app = express();
+
   const schema = await buildSchema({
     resolvers: [UserResolver],
     emitSchemaFile: false
@@ -28,14 +30,12 @@ async function bootstrap() {
 
   /**
    * @capability https_server
-   * 
-   * @klotho::public
    */
   app.listen(4000, async () => {
     console.log(`Server is running on http://localhost:4000/graphql`)
   })
 
-
+  return app
 }
 
 exports.app = app
