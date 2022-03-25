@@ -10,7 +10,7 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./userResolver";
 
-const app = setupApp();
+export const app = setupApp();
 
 async function setupApp() {
   // Note: this needs to be the same name as what is exported for klotho to figure out what to import.
@@ -37,5 +37,3 @@ async function setupApp() {
 
   return app
 }
-
-exports.app = app
