@@ -1,7 +1,10 @@
 /**
- * @keep_warm
- * @compute_size 1core_512mb
- * @topology_group imageapi
+ * @klotho::execution_unit {
+ *   name = "media-imageapi"
+ *   keep_warm = true
+ *   [size]
+ *   mem_mb = 512
+ * }
  */
 
 import * as express from 'express';
@@ -19,20 +22,16 @@ var upload = multer({ storage: storage })
 
 const { router, app } = setupExpressApp();
 
-/**
- * @capability file_persist
- */
+// @klotho::persist
 import cloudEnabledFS = require("fs/promises");
 
 /**
 * Persists the native Javascript Map when compiled
-* @capability kv_persist eventually_consistent
+* @klotho::persist {
+*  map_id = "imageKV"
+* }
 */
-let imageStore = new Map<string, string>([["options", {
-  mapId: "imageKV",
-  batchWrite: false,
-  writeOnChange: false
-} as any]]);
+let imageStore = new Map<string, string>();
 
 imageStore.delete("options")
 
@@ -101,14 +100,11 @@ router.delete('/v1/images/:id', async (req, res) => {
   }
 })
 
+// @klotho::public
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })
 
 app.use(router)
 
-/**
- * Connects the webapp to the Internet with an API Gateway
- * @capability https_server
- */
 exports.app = app

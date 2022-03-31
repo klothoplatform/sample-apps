@@ -1,10 +1,15 @@
 /**
- * @topology_group secrets_main
+ * @klotho::execution_unit {
+ *  name = "secrets-main"
+ * }
  */
 
 
+
 /**
- * @capability secret_persist
+ * @klotho::persist {
+ *  type = "secret"
+ * }
  */
 import fs = require("fs/promises");
 
@@ -20,10 +25,8 @@ app.get('/', async (req, res) => {
   res.send(f.toString("utf-8"))
 });
 
-/**
- * @capability https_server
- */
- app.listen(3000, async () => {
+// @klotho::public
+app.listen(3000, async () => {
   console.log(`App listening locally at :3000`)
 })
 

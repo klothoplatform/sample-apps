@@ -1,12 +1,9 @@
 /**
- * @topology_group api
- * @keep_warm
- * @compute_size 1core_512mb
- * 
  * @klotho::execution_unit {
- *   name = "api"
+ *   name = "microsrv-api"
  *   keep_warm = true
- *   compute_size = "1core_512mb"
+ *  [size]
+ *   mem_mb = 512
  * }
  */
 
@@ -40,11 +37,8 @@ router.put('/users/:user', async (req, res) => {
 
 app.use(router)
 
-/**
- * @capability https_server
- * @klotho::public
- */
- app.listen(3000, async () => {
+// @klotho::public
+app.listen(3000, async () => {
   console.log(`App listening at :3000`)
 })
 

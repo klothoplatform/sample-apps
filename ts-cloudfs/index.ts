@@ -1,11 +1,11 @@
 /**
- * @topology_group main
+ * @klotho::execution_unit {
+ *  name = "cloudfs-main"
+ * }
  */
 
 
-/**
- * @capability file_persist
- */
+// @klotho::persist
 import fs = require("fs/promises");
 
 import * as express from 'express';
@@ -21,10 +21,8 @@ app.get('/', async (req, res) => {
   res.send(f.toString("utf-8"))
 });
 
-/**
- * @capability https_server
- */
- app.listen(3000, async () => {
+// @klotho::public
+app.listen(3000, async () => {
   console.log(`App listening locally`)
 })
 

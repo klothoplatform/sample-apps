@@ -21,11 +21,7 @@ function setupExpressApp() {
   return { router, app };
 }
 
-/**
- * @capability https_server
- * 
- * @klotho::public
- */
+// @klotho::public
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })
