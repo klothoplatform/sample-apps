@@ -1,7 +1,10 @@
 /**
- * @keep_warm
- * @compute_size 1core_512mb
- * @topology_group api
+ * @klotho::execution_unit {
+ *   name = "graphql-api"
+ *   keep_warm = true
+ *   [size]
+ *   mem_mb = 512
+ * }
  */
 
 import { ApolloServer } from "apollo-server-express";
@@ -29,7 +32,7 @@ async function setupApp() {
 
 
   /**
-   * @capability https_server
+   * @klotho::public
    */
   app.listen(4000, async () => {
     console.log(`Server is running on http://localhost:4000/graphql`)

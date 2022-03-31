@@ -1,22 +1,14 @@
 /**
- * @topology_group users
- * @keep_warm
- * @compute_size 1core_512mb
  * 
  * @klotho::execution_unit {
- *   name = "users"
+ *   name = "microsrv-users"
  *   keep_warm = true
- *   compute_size = "1core_512mb"
+ *  [size]
+ *   mem_mb = 512
  * }
  */
 
-/**
- * @capability kv_persist eventually_consistent
- * 
- * @klotho::persist {
- *   eventually_consistent = true
- * }
- */
+// @klotho::persist
 const users = new Map<string, string>();
 
 

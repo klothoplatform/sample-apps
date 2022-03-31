@@ -1,12 +1,9 @@
 /**
- * @topology_group quotes
- * @keep_warm
- * @compute_size 1core_512mb
- * 
  * @klotho::execution_unit {
- *   name = "quotes"
+ *   name = "srvless-quotes"
  *   keep_warm = true
- *   compute_size = "1core_512mb"
+ *   [size]
+ *   mem_mb = 512
  * }
  */
 
@@ -14,17 +11,11 @@
 
 
 /**
- * @capability kv_persist eventually_consistent
- * 
  * @klotho::persist {
- *   eventually_consistent = true
+ *  map_id = "quoteKV"
  * }
  */
-let quoteStore = new Map<string, string>([["options", {
-    mapId: "quoteKV",
-    batchWrite: false,
-    writeOnChange: false
-} as any]]);
+let quoteStore = new Map<string, string>();
 
 quoteStore.delete("options")
 

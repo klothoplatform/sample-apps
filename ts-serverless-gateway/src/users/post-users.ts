@@ -1,14 +1,12 @@
 /**
- * @topology_group userpost
- * @keep_warm
- * @compute_size 1core_512mb
- * 
  * @klotho::execution_unit {
- *   name = "userpost"
+ *   name = "srvless-userpost"
  *   keep_warm = true
- *   compute_size = "1core_512mb"
+ *   [size]
+ *   mem_mb = 512
  * }
  */
+
 
 const userPost = require('express').Router();
 

@@ -1,14 +1,12 @@
 /**
- * @topology_group userget
- * @keep_warm
- * @compute_size 1core_512mb
- * 
  * @klotho::execution_unit {
- *   name = "userget"
+ *   name = "srvless-userget"
  *   keep_warm = true
- *   compute_size = "1core_512mb"
+ *   [size]
+ *   mem_mb = 512
  * }
  */
+
 
 const userGet = require('express').Router();
 
