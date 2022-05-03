@@ -8,7 +8,11 @@
  * }
  */
 
-// @klotho::persist
+/**
+ * @klotho::persist {
+ *   eventually_consistent = true
+ * }
+ */
 const users = new Map<string, string>();
 
 
