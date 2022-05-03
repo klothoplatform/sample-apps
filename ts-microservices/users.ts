@@ -11,6 +11,7 @@
 /**
  * @klotho::persist {
  *   eventually_consistent = true
+ *   write_on_change = true
  * }
  */
 const users = new Map<string, string>();
