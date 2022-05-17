@@ -7,6 +7,9 @@
 import events = require("events")
 import * as Express from "express"
 
+/**
+ * @klotho::distributed
+ */
 export const MyEmitter = new events.EventEmitter();
 
 import "./hello_handler" // import after emitter set up to register handlers
