@@ -11,5 +11,3 @@ MyEmitter.on('hello', async (user) => {
   await new Promise(resolve => setTimeout(resolve, 1000)) // sleep 1s
   console.log(`goodbye ${user}`)
 })
-
-console.log("registered 'hello'")
