@@ -8,7 +8,7 @@ const userGet = require('./users/get-users');
 const userPost = require('./users/post-users');
 
 router.get('/', async (req, res) => {
-  res.send("Hello World! - CloudCC");
+  res.send("Hello World! - Klotho");
 });
 
 function setupExpressApp() {
