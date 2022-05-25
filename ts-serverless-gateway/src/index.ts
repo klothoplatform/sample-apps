@@ -21,7 +21,10 @@ function setupExpressApp() {
   return { router, app };
 }
 
-// @klotho::public
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })

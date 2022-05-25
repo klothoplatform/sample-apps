@@ -21,7 +21,10 @@ app.get('/', async (req, res) => {
   res.send(f.toString("utf-8"))
 });
 
-// @klotho::public
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })

@@ -18,7 +18,10 @@ export async function scheduledHealthSignal(){
   logger.warn(`Health signal logged at ${Date.now()}`);
 }
 
-// @klotho::public
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })
