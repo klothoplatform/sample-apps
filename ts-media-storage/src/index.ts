@@ -100,7 +100,10 @@ router.delete('/v1/images/:id', async (req, res) => {
   }
 })
 
-// @klotho::public
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })

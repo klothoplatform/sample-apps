@@ -13,7 +13,8 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { UserResolver } from "./userResolver";
 
-export const app = setupApp();
+const app = setupApp();
+export {app}
 
 async function setupApp() {
   // Note: this needs to be the same name as what is exported for klotho to figure out what to import.
@@ -31,9 +32,10 @@ async function setupApp() {
   server.applyMiddleware({ app });
 
 
-  /**
-   * @klotho::public
-   */
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
   app.listen(4000, async () => {
     console.log(`Server is running on http://localhost:4000/graphql`)
   })
