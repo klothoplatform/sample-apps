@@ -54,7 +54,7 @@ function generateImagePath(id: string) {
 }
 
 router.get('/', async (req, res) => {
-  res.send("Hello Klotho!");
+  res.send("Hello from Klotho!");
 });
 
 router.get('/v1/images/:id', async (req, res) => {
