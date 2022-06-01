@@ -1,5 +1,5 @@
 /**
- * @klotho::execution_group {
+ * @klotho::execution_unit {
  *  name = "events-api"
  * }
  */
@@ -7,12 +7,11 @@
 import events = require("events")
 import * as Express from "express"
 
-/**
- * @klotho::distributed
- */
+// @klotho::pubsub
 export const MyEmitter = new events.EventEmitter();
 
 import "./hello_handler" // import after emitter set up to register handlers
+import "./other/handler"
 
 const app = Express()
 
