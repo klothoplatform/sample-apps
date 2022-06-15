@@ -15,6 +15,7 @@ app.use(express.json())
 app.post('/item/', async (req, res) => {
   var key = req.body["key"]
   var value = req.body["value"]
+
   await set(key, value)
   res.send("success")
 });
