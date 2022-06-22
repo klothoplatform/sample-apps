@@ -22,6 +22,8 @@ app.post("/hello/:user", async (req, resp) => {
 })
 
 /**
- * @klotho::public
+ * @klotho::expose {
+ *  target = "public"
+ * }
  */
 app.listen(3000, () => console.log("listening on :3000"))
