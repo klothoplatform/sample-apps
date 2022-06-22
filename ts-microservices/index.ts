@@ -37,7 +37,10 @@ router.put('/users/:user', async (req, res) => {
 
 app.use(router)
 
-// @klotho::public
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
 app.listen(3000, async () => {
   console.log(`App listening at :3000`)
 })

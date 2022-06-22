@@ -8,7 +8,7 @@ const userGet = require('./users/get-users');
 const userPost = require('./users/post-users');
 
 router.get('/', async (req, res) => {
-  res.send("Hello World! - CloudCC");
+  res.send("Hello from Klotho!");
 });
 
 function setupExpressApp() {
@@ -21,7 +21,10 @@ function setupExpressApp() {
   return { router, app };
 }
 
-// @klotho::public
+/* @klotho::expose {
+ *  target = "public"
+ * }
+ */
 app.listen(3000, async () => {
   console.log(`App listening locally`)
 })
