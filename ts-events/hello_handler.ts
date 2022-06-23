@@ -4,7 +4,7 @@
  * }
  */
 
-import { MyEmitter } from "."
+import { MyEmitter } from "./emitter"
 
 const users = new Set<string>()
 
