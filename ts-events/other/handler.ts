@@ -4,7 +4,7 @@
  * }
  */
 
-import * as pkg from ".."
+import * as pkg from "../emitter"
 
 pkg.MyEmitter.on('other', async () => {
   console.log(`...`)
