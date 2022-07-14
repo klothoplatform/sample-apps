@@ -7,10 +7,6 @@
 import * as Express from "express"
 import { MyEmitter } from "./emitter"
 
-
-import "./hello_handler" // import after emitter set up to register handlers
-import "./other/handler"
-
 const app = Express()
 
 app.post("/hello/:user", async (req, resp) => {
