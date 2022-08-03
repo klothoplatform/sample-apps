@@ -8,14 +8,11 @@
  */
 
 
-const userGet = require('express').Router();
+export const router = require('express').Router();
 
 function getUsers(event, res) {
     let usersList = "[user1, user2, user3]"
     res.send(usersList);
 }
 
-userGet.get('/v1/users', getUsers);
-
-module.exports = userGet;
- 
+router.get('/v1/users', getUsers);

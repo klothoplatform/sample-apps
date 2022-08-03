@@ -7,7 +7,7 @@
  * }
  */
 
- const quotes = require('express').Router();
+export const router = require('express').Router();
 
 
 /**
@@ -42,7 +42,5 @@ async function getQuote(req, res) {
 }
 
 
-quotes.post('/v1/quote', postQuote);
-quotes.get('/v1/quote-list', getQuote);
-
-module.exports = quotes;
+router.post('/v1/quote', postQuote);
+router.get('/v1/quote-list', getQuote);
