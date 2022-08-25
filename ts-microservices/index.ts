@@ -1,9 +1,7 @@
 /**
  * @klotho::execution_unit {
- *   name = "microsrv-api"
+ *   id = "microsrv-api"
  *   keep_warm = true
- *  [size]
- *   mem_mb = 512
  * }
  */
 
@@ -39,6 +37,7 @@ app.use(router)
 
 /* @klotho::expose {
  *  target = "public"
+ *  id = "app"
  * }
  */
 app.listen(3000, async () => {

@@ -1,11 +1,14 @@
 /**
  * @klotho::execution_unit {
- *  name = "cloudfs-main"
+ *  id = "cloudfs-main"
  * }
  */
 
 
-// @klotho::persist
+/* @klotho::persist {
+ * id = "fs"
+ * }
+ */ 
 import fs = require("fs/promises");
 
 import * as express from 'express';
@@ -23,6 +26,7 @@ app.get('/', async (req, res) => {
 
 /* @klotho::expose {
  *  target = "public"
+ *  id = "app"
  * }
  */
 app.listen(3000, async () => {

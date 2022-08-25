@@ -1,9 +1,7 @@
 /**
  * @klotho::execution_unit {
- *   name = "media-imageapi"
+ *   id = "media-imageapi"
  *   keep_warm = true
- *   [size]
- *   mem_mb = 512
  * }
  */
 
@@ -22,13 +20,16 @@ var upload = multer({ storage: storage })
 
 const { router, app } = setupExpressApp();
 
-// @klotho::persist
+/* @klotho::persist {
+ * id = "cloudFs"
+ * }
+ */
 import cloudEnabledFS = require("fs/promises");
 
 /**
 * Persists the native Javascript Map when compiled
 * @klotho::persist {
-*  map_id = "imageKV"
+*  id = "imageKV"
 * }
 */
 let imageStore = new Map<string, string>();
@@ -102,6 +103,7 @@ router.delete('/v1/images/:id', async (req, res) => {
 
 /* @klotho::expose {
  *  target = "public"
+ *  id = "app"
  * }
  */
 app.listen(3000, async () => {

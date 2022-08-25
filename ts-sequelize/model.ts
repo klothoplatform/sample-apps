@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *  name = "sequelize-main"
+ *  id = "sequelize-main"
  * }
  */
 
@@ -15,7 +15,11 @@ import {
 const sequelize = setupSequelize();
 
 async function setupSequelize(): Promise<Sequelize> {
-  // @klotho::persist
+
+  /** @klotho::persist  {
+   *   id = "sequelizeDB"
+   * }
+   * */ 
   const sequelize = new Sequelize(`sqlite::memory:`, { logging: false });
 
   console.log("connecting");
