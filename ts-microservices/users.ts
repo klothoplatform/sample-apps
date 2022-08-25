@@ -1,17 +1,14 @@
 /**
  * 
  * @klotho::execution_unit {
- *   name = "microsrv-users"
+ *   id = "microsrv-users"
  *   keep_warm = true
- *  [size]
- *   mem_mb = 512
  * }
  */
 
 /**
  * @klotho::persist {
- *   eventually_consistent = true
- *   write_on_change = true
+ *   id = "users"
  * }
  */
 const users = new Map<string, string>();

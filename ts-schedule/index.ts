@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *  name = "schedule-main"
+ *  id = "schedule-main"
  * }
  */
 
@@ -20,6 +20,7 @@ export async function scheduledHealthSignal(){
 
 /* @klotho::expose {
  *  target = "public"
+ *  id = "app"
  * }
  */
 app.listen(3000, async () => {

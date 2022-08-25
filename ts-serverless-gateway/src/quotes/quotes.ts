@@ -2,8 +2,6 @@
  * @klotho::execution_unit {
  *   id = "srvless-quotes"
  *   keep_warm = true
- *   [size]
- *   mem_mb = 512
  * }
  */
 

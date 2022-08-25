@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *  name = "events-other"
+ *  id = "events-other"
  * }
  */
 

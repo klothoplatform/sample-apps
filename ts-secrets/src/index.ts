@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *  name = "secrets-main"
+ *  id = "secrets-main"
  * }
  */
 
@@ -8,7 +8,8 @@
 
 /**
  * @klotho::persist {
- *  type = "secret"
+ *  secret = true
+ * id = "secret"
  * }
  */
 import fs = require("fs/promises");
@@ -30,6 +31,7 @@ app.use(router)
 
 /* @klotho::expose {
  *  target = "public"
+  id = "app"
  * }
  */
 app.listen(3000, async () => {

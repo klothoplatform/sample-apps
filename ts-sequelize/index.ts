@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *  name = "sequelize-main"
+ *  id = "sequelize-main"
  * }
  */
 
@@ -26,6 +26,7 @@ app.get("/item/:key", async (req, res) => {
 /*
  * @klotho::expose {
  *  target = "public"
+ *   id = "sequelizeApp"
  * }
  */
 app.listen(3000, async () => {

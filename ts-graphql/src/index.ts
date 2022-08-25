@@ -1,9 +1,7 @@
 /**
  * @klotho::execution_unit {
- *   name = "graphql-api"
+ *   id = "graphql-api"
  *   keep_warm = true
- *   [size]
- *   mem_mb = 512
  * }
  */
 
@@ -34,6 +32,7 @@ async function setupApp() {
 
 /* @klotho::expose {
  *  target = "public"
+ *  id = "app"
  * }
  */
   app.listen(4000, async () => {
