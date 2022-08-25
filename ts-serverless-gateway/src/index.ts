@@ -20,6 +20,7 @@ function setupExpressApp() {
 }
 
 /* @klotho::expose {
+ *  id = "app"
  *  target = "public"
  * }
  */

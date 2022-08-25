@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *   name = "srvless-userpost"
+ *   id = "srvless-userpost"
  *   keep_warm = true
  *   [size]
  *   mem_mb = 512

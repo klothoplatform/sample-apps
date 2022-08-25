@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *   name = "srvless-quotes"
+ *   id = "srvless-quotes"
  *   keep_warm = true
  *   [size]
  *   mem_mb = 512
@@ -12,7 +12,7 @@ export const router = require('express').Router();
 
 /**
  * @klotho::persist {
- *  map_id = "quoteKV"
+ *  id = "quoteKV"
  * }
  */
 let quoteStore = new Map<string, string>();
