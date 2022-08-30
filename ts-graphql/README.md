@@ -34,17 +34,13 @@ mutation {
 run the terminal commands:
 ```sh
 # Compile the app
-cloudcc compile \
-    --runenv AWS \
-    --appname graphql-app-<user> \
-    --out-dir compiled \
-    ./dist/index.js
+klotho ./dist --app sample-ts-graphql
 
 # npm install
 npm --prefix ./compiled install
 
 # Deploy
-cloudcc up -w ./compiled -s cloudcc-webapi-example
+pulumi up -w ./compiled -s cloudcc-webapi-example
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/'

@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "target": "ES2019",
     "moduleResolution": "node",
@@ -10,7 +12,7 @@
     "types": ["node"],
     "allowJs": true,
     "checkJs": true,
-    "sourceRoot": "src/"
+    "sourceRoot": "src/",
   },
   "exclude": [
     "**/*.js",

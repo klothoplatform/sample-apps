@@ -18,7 +18,9 @@
     "express": "^4.17.2",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^6.20.1",
-    "sqlite3": "^5.0.8"
+    "sqlite3": "^5.0.8",
+    "typeorm": "^0.3.7"
   }
 }
