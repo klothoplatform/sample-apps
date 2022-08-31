@@ -7,12 +7,21 @@
 import * as express from "express";
 import { createClient } from 'redis';
 
-/**
-* @klotho::persist {
-*   id = "redis"
-* }
-*/
-const client = createClient({});
+const setupRedisClient = async () => {
+  /**
+  * @klotho::persist {
+  *   id = "redis"
+  * }
+  */
+  const client = createClient({socket: {
+    keepAlive: 5000
+  }})
+  await client.connect()
+  return client
+}
+
+
+const redisClient = setupRedisClient();
 
 const app = express();
 app.use(express.json());
@@ -20,16 +29,14 @@ app.use(express.json());
 app.post("/user/", async (req, res) => {
   const key = req.body["firstName"];
   const value = req.body["lastName"];
-  await client.connect();
+  const client = await redisClient;
   await client.set(key, value);
-  await client.quit()
   res.send("success");
 });
 
 app.get("/user/:firstName", async (req, res) => {
-  await client.connect();
+  const client = await redisClient;
   const value = await client.get(req.params['firstName']);
-  await client.quit()
   res.send(value);
 });
 
