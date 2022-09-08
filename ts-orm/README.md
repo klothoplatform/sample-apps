@@ -2,7 +2,7 @@
 
 ## Run the app locally
 
-## Compile and Deploy with Cloudcc
+## Compile and Deploy with Klotho
 
 run the terminal commands:
 ```sh
