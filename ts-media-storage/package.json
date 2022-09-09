@@ -2,6 +2,10 @@
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "compile": "tsc && klotho ./dist --app ts-media-storage",
+    "start": "tsc && node ./dist/index.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",

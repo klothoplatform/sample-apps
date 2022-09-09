@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "42126a81-7fc3-44b8-b148-00079cfae04c",
+		"name": "ts-media-storage",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22534887"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}",
+					"host": [
+						"{{host}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Item Metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/v1/metadata/:id",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"metadata",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "my_image.png"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Item Content",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "image/*",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/v1/media/:id",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"media",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "my_image.png"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "media_file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "filename",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/v1/media/:id",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"media",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "js.png"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/v1/media/:id",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"media",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "my_image.png"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "cloud",
+			"value": "https://somehost/stage",
+			"type": "string"
+		},
+		{
+			"key": "local",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
