@@ -1,0 +1,45 @@
+app: sample-app-nest
+provider: aws
+path: dist
+out_dir: compiled
+defaults:
+    execution_unit:
+        type: lambda
+        pulumi_params_by_type:
+            eks:
+                metadata:
+                    labels:
+                        klotho: enabled
+                spec:
+                    replicas: 1
+            fargate:
+                cpu: 256
+                memory: 512
+            lambda:
+                memorySize: 512
+                timeout: 180
+    expose:
+        type: apigateway
+    persist:
+        kv:
+            type: dynamodb
+        fs:
+            type: s3
+        secret:
+            type: s3
+        orm:
+            type: rds_postgres
+            pulumi_params_by_type:
+                rds_postgres:
+                    allocatedStorage: 20
+                    instanceClass: db.t4g.micro
+                    skipFinalSnapshot: true
+        redis:
+            type: elasticache
+            pulumi_params_by_type:
+                elasticache:
+                    nodeType: cache.t3.micro
+                    numCacheNodes: 1
+execution_units:
+    main:
+        type: eks

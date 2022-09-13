@@ -1,5 +1,6 @@
+
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './src/app.module';
+import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
 
@@ -10,11 +11,11 @@ async function bootstrap() {
 
   /**
    * @klotho::expose {
-   *  id = "orgApp"
+   *  id = "nestApp"
    *  target = "public"
    * }
    */
   await app.listen(3000);
   return expressApp
 }
-const app = bootstrap();
+const nestApp = bootstrap();
