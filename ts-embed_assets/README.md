@@ -1,4 +1,12 @@
 # Embedding Assets Sample App
+This guide assumes:
+- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
+- pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
+
+## Install dependencies
+```sh
+npm install
+```
 
 ## Run the app locally
 ```sh
@@ -34,28 +42,29 @@ npm install
 pulumi up -s $USER-ts-embed-assets
 
 # Outputs: {
-#   apiUrl: 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/'
+#   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
 # }
 
 ```
 ## Calling your service
 
 ```sh
-curl  https://<...>.execute-api.us-east-1.amazonaws.com/stage/hello
+curl  https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello
 # > hi
 
 # Get the hello.txt
-curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/static/hello.txt
+curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/static/hello.txt
 # > Hello Klotho!
 
 # Try to get the excluded excludeme.txt
-curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/static/excludeme.txt
+curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/static/excludeme.txt
 # > {"message": "Internal server error"}
 # status code: 403
 ```
 
 ## Clean Up
+From the compiled directory still,
 ```sh
 # Tear down when done
-pulumi destroy -w ./compiled -s $USER-ts-embed-assets
+pulumi destroy -s $USER-ts-embed-assets
 ```
