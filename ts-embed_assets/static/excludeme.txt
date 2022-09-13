@@ -1,1 +1,1 @@
-This file should be excluded
+This asset file should be excluded from the Klotho-compiled application
