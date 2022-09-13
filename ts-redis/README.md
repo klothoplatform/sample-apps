@@ -13,7 +13,7 @@ tsc && klotho ./dist --app sample-ts-redis
 npm --prefix ./compiled install
 
 # Deploy
-pulumi up -w ./compiled -s klotho-redis-example
+pulumi up -C ./compiled -s klotho-redis-example
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/'
@@ -35,5 +35,5 @@ curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/user/john
 ## Clean Up
 ```sh
 # Tear down when done
-pulumi destroy -w ./compiled -s klotho-redis-example
+pulumi destroy -C ./compiled -s klotho-redis-example
 ```

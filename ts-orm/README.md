@@ -13,7 +13,7 @@ klotho ./dist/index.js --app sample-ts-orm
 npm --prefix ./compiled install
 
 # Deploy
-pulumi up -w ./compiled -s klotho-orm-example
+pulumi up -C ./compiled -s klotho-orm-example
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/'
@@ -47,5 +47,5 @@ curl  https://<...>.execute-api.us-east-1.amazonaws.com/stage/user/john
 ## Clean Up
 ```sh
 # Tear down when done
-pulumi destroy -w ./compiled -s klotho-orm-example
+pulumi destroy -C ./compiled -s klotho-orm-example
 ```

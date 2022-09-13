@@ -40,7 +40,7 @@ klotho ./dist --app sample-ts-graphql
 npm --prefix ./compiled install
 
 # Deploy
-pulumi up -w ./compiled -s cloudcc-webapi-example
+pulumi up -C ./compiled -s cloudcc-webapi-example
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/'
@@ -62,5 +62,5 @@ curl -G 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/graphql' --data
 ## Clean Up
 ```sh
 # Tear down when done
-cloudcc destroy -w ./compiled -s cloudcc-webapi-example
+cloudcc destroy -C ./compiled -s cloudcc-webapi-example
 ```
