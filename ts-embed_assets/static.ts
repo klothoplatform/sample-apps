@@ -2,7 +2,6 @@
  * 
  * @klotho::execution_unit {
  *   id = "assets-static"
- *   keep_warm = true
  * }
  */
 

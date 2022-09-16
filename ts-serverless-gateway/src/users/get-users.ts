@@ -1,7 +1,6 @@
 /**
  * @klotho::execution_unit {
  *   id = "srvless-userget"
- *   keep_warm = true
  * }
  */
 

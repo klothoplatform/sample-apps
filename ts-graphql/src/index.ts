@@ -1,7 +1,6 @@
 /**
  * @klotho::execution_unit {
  *   id = "graphql-api"
- *   keep_warm = true
  * }
  */
 

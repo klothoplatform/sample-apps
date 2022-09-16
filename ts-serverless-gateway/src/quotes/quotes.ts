@@ -1,7 +1,6 @@
 /**
  * @klotho::execution_unit {
  *   id = "srvless-quotes"
- *   keep_warm = true
  * }
  */
 
