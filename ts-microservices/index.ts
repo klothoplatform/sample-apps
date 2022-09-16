@@ -1,7 +1,6 @@
 /**
  * @klotho::execution_unit {
  *   id = "microsrv-api"
- *   keep_warm = true
  * }
  */
 

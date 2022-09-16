@@ -2,7 +2,6 @@
  * 
  * @klotho::execution_unit {
  *   id = "microsrv-users"
- *   keep_warm = true
  * }
  */
 

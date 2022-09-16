@@ -1,7 +1,6 @@
 /**
  * @klotho::execution_unit {
  *   id = "media-imageapi"
- *   keep_warm = true
  * }
  */
 
