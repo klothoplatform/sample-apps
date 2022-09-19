@@ -1,7 +1,7 @@
 import events = require("events")
 
 /* @klotho::pubsub {
-*  id = "myEmmitter"
+*  id = "myEmitter"
 * }
 */
 export const MyEmitter = new events.EventEmitter();
