@@ -1,4 +1,3 @@
-
 class Utils {
 
   public static uuid() : string {

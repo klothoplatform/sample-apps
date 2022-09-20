@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": ["es5", "es6", "dom"],
+        "target": "ES2019",
         "module": "commonjs",
         "moduleResolution": "node",
         "isolatedModules": false,
@@ -13,23 +12,13 @@
         "noLib": false,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
-        "outDir": "../dist/js"
+        "outDir": "dist"
     },
-    "filesGlob": [
-        "**/*.ts",
-        "**/*.tsx",
-        "!node_modules/**"
+    "exclude": [
+        "compiled/*",
+        "node_modules/*"
     ],
-    "files": [
-        "constants.ts",
-        "interfaces.d.ts",
-        "todoModel.ts",
-        "utils.ts",
-        "app.tsx",
-        "footer.tsx",
-        "todoItem.tsx"
-    ],
-    "exclude": [],
+    "files": ["serve.ts", "dataStore.ts"],
     "baseUrl": "types",
     "typeRoots": ["types"]
 }
