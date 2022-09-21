@@ -6,8 +6,12 @@
 
 run the terminal commands:
 ```sh
+npm i && npx tsc
+```
+
+```sh
 # Compile the app
-klotho ./dist/index.js --app sample-ts-orm
+klotho . --app sample-ts-orm
 
 # npm install
 npm --prefix ./compiled install

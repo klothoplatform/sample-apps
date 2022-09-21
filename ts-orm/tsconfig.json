@@ -12,7 +12,7 @@
     "types": ["node"],
     "allowJs": true,
     "checkJs": true,
-    "sourceRoot": "src/",
+    "sourceRoot": "src/"
   },
   "exclude": [
     "**/*.js",
