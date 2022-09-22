@@ -25,5 +25,5 @@
     "static/*",
     "static/compiler-test-sources/compiled/**",
     "merger/**"
-  ],
+  ]
 }
