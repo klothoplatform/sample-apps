@@ -1,4 +1,4 @@
-# ORM Sample App
+# TypeORM Sample App
 
 ## Run the app locally
 
@@ -17,8 +17,8 @@ klotho . --app sample-ts-typeorm
 npm --prefix ./compiled install
 
 # Set username and password
-pulumi config set sample-ts-typeorm:typeormdb_username
-pulumi config set sample-ts-typeorm:typeormdb_password
+pulumi config set sample-ts-typeorm:typeormdb_username -C ./compiled -s sample-ts-typeorm
+pulumi config set sample-ts-typeorm:typeormdb_password -C ./compiled -s sample-ts-typeorm
 
 # Deploy
 pulumi up -C ./compiled -s sample-ts-typeorm

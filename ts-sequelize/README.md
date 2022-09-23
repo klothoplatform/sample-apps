@@ -1,4 +1,4 @@
-# ORM Sample App
+# Sequelize Sample App
 
 ## Run the app locally
 
@@ -17,8 +17,8 @@ klotho . --app sample-ts-sequelize
 npm --prefix ./compiled install
 
 # Set username and password
-pulumi config set sample-ts-sequelize:typeormdb_username
-pulumi config set sample-ts-sequelize:typeormdb_password
+pulumi config set sample-ts-sequelize:typeormdb_username -C ./compiled -s sample-ts-sequelize
+pulumi config set sample-ts-sequelize:typeormdb_password -C ./compiled -s sample-ts-sequelize
 
 
 # Deploy
