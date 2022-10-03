@@ -26,7 +26,9 @@ async function setupApp() {
     schema
   });
 
+  await server.start();
   server.applyMiddleware({ app });
+
 
 
 /* @klotho::expose {
