@@ -1,5 +1,5 @@
 import "reflect-metadata"
-import { DataSource, createConnection } from "typeorm"
+import { DataSource } from "typeorm"
 import { User } from "./model"
 
 
@@ -10,11 +10,12 @@ export const initialize = async (): Promise<DataSource> => {
    * }
    */ 
     const AppDataSource = new DataSource({
-        type: "postgres",
-        entities: [User],
-        synchronize: true,
-        logging: false,
-    })
+     type: "sqlite",
+     database: "user.sqlite",
+     entities: [User],
+     synchronize: true,
+     logging: false,
+   })
     
     // to initialize initial connection with the database, register all entities
     // and "synchronize" database schema, call "initialize()" method of a newly created database
