@@ -27,9 +27,7 @@ async function setupApp() {
   });
 
   await server.start();
-  server.applyMiddleware({ app });
-
-
+  app.use('/', server.getMiddleware())
 
 /* @klotho::expose {
  *  target = "public"
