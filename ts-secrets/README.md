@@ -1,4 +1,4 @@
-# TypeORM Sample App
+# Secrets Sample App
 
 ## Overview
 
@@ -14,59 +14,51 @@ This guide assumes:
 
 ```sh
 npm i 
-npx ts-node index.ts
+npx ts-node src/index.ts
 ```
 
-Hit your endpoints
+Hit your endpoint
 ```sh
-curl http://localhost:3000/user -d '{"firstName": "john", "lastName": "doe"}' -H "Content-Type: application/json"
-# > success%
-
-curl http://localhost:3000/user/john
-# > {"id":1,"firstName":"john","lastName":"doe"}%
+curl http://localhost:3000/
+# > very secret%
 ```
-
-
 
 ## Compile and Deploy with Klotho
 
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-typeorm -p aws
+tsc && klotho . --app ts-secrets -p aws
+
+## Copy the secret into compiled
+cp my_secret.key ./compiled
 
 # Go into the compiled directory
 cd compiled
 
 # If you didn't set the aws region as indicated in the compiler output, do that now
-pulumi config set aws:region YOUR_REGION -s ts-typeorm
+pulumi config set aws:region YOUR_REGION -s ts-secrets
 
 # npm install
 npm install
 
 # Deploy
-pulumi up -s ts-typeorm
+pulumi up -s ts-secrets
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
 # }
-```
 
+```
 ## Calling your service
 
 ```sh
-# Add a user 
-curl -X POST  https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/user -d '{"firstName": "john", "lastName": "doe"}' -H "Content-Type: application/json"
-# > success
-
-# Get all users
-curl  https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/user/john
-# > {"id":8,"firstName":"john","lastName":"doe"}
+curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/
+# > very secret
 ```
 
 ## Clean Up
-from the compiled directory
 ```sh
 # Tear down when done
-pulumi destroy -s ts-typeorm
+pulumi destroy -s ts-secrets
 ```

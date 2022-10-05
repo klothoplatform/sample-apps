@@ -68,6 +68,7 @@ router.get('/v1/images/:id', async (req, res) => {
 
 router.post('/v1/images/:id', upload.single('image'), async (req, res) => {
   try {
+    console.log(req.file)
     const imagePath = generateImagePath(req.params.id)
     // use non-annotated fs to read image from /tmp/
     const readStream = fs.createReadStream(req.file.path);
