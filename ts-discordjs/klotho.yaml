@@ -1,0 +1,7 @@
+app: discord-bot
+provider: aws
+path: .
+out_dir: compiled
+defaults:
+    execution_unit:
+        type: fargate
