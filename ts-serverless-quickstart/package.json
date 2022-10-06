@@ -1,4 +1,5 @@
 {
+  "name": "serverless-quickstart-sample-app",
   "scripts": {
     "klotho": "scripts/klotho/npm/klotho",
     "pulumi": "scripts/klotho/npm/pulumi"
