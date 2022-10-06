@@ -1,13 +1,9 @@
 # Embedding Assets Sample App
-
-## Overview 
-
 The `ts-embed_assets` sample application demonstrates how to use the `@klotho::embed_assets` annotation to direct klotho to include static assets into an execution unit. The sample application exposes three endpoints to demonstrate the embedded assets and exlude directive on `embed_assets` the annotation.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 ## Install dependencies
@@ -17,7 +13,7 @@ npm install
 
 ## Run the app locally
 ```sh
-ts-node index.ts
+npx ts-node index.ts
 ```
 
 Test APIs with:
@@ -34,7 +30,7 @@ Hello Klotho!
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app $USER-ts-embed-assets -p aws
+npx tsc && klotho . --app $USER-ts-embed-assets -p aws
 
 # Go into the compiled directory
 cd compiled

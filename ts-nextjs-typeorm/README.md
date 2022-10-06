@@ -1,13 +1,10 @@
 # NextJs & TypeORM Sample app
 
-## Overview
-
 This application is a simple blogging site created with NextJS and TypeORM that allows visitors to read or submit markdown-formatted blog posts.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 
@@ -34,7 +31,7 @@ The `src/pages/api` directory is mapped to `/api/*`. Files in this directory are
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-nextjs-typeorm -p aws
+npx tsc && klotho . --app ts-nextjs-typeorm -p aws
 
 # Go into the compiled directory
 cd compiled

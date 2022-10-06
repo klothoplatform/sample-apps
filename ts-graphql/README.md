@@ -1,13 +1,10 @@
 # Graphql Sample App
 
-## Overview 
-
-The `ts-graphql` sample application demonstrates how to use the `@klotho::expose` annotation can be used with graphql. The sample application defines a graphql endpoint to run queries and mutations against.
+The `ts-graphql` sample application demonstrates how to use the `@klotho::expose` annotation with a graphql [`ApolloServer`](https://www.apollographql.com/docs/apollo-server/). The sample application defines a graphql endpoint to run queries and mutations against.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 
@@ -18,7 +15,7 @@ run the terminal commands:
 npm install
 npm run start
 # graphql-sample-app@1.0.0 start
-# ts-node src/index.ts
+# npx ts-node src/index.ts
 # Server is running on http://localhost:4000/graphql
 ```
 
@@ -44,7 +41,7 @@ mutation {
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-graphql -p aws
+npx tsc && klotho . --app ts-graphql -p aws
 
 # Go into the compiled directory
 cd compiled

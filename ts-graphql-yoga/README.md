@@ -1,13 +1,10 @@
 # Graphql Yoga Sample App
 
-## Overview 
-
-The `ts-graphql-yoga` sample application demonstrates how to use the `@klotho::expose` annotation can be used with a graphql-yoga server. The sample application defines a graphql endpoint to run queries and mutations against.
+The `ts-graphql-yoga` sample application demonstrates how to use the `@klotho::expose` annotation with a [graphql-yoga server](https://www.the-guild.dev/graphql/yoga-server). The sample application defines a graphql endpoint to run queries and mutations against.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 
@@ -41,7 +38,7 @@ Running queries through the browser
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-graphql-yoga -p aws
+npx tsc && klotho . --app ts-graphql-yoga -p aws
 
 # Go into the compiled directory
 cd compiled

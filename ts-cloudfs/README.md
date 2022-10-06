@@ -1,13 +1,10 @@
 # Cloud FS Sample App
 
-## Overview 
-
 The `ts-cloudfs` sample application demonstrates how to use the `@klotho::persist` annotation to store secrets. The sample application exposes one endpoint, with path `/` to return the content of the stored secret.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 ## Install dependencies
@@ -17,7 +14,7 @@ npm install
 
 ## Run the app locally
 ```sh
-ts-node index.ts
+npx ts-node index.ts
 ```
 
 Test APIs with:
@@ -31,7 +28,7 @@ Startup at 2022-10-04T14:58:00.349Z%
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-cloudfs -p aws
+npx tsc && klotho . --app ts-cloudfs -p aws
 
 # Go into the compiled directory
 cd compiled

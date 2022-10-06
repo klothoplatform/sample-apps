@@ -1,13 +1,10 @@
 # Media Storage Sample App
 
-## Overview 
-
 The `ts-media-storage` sample application demonstrates how to use the `@klotho::persist` annotation to store media files and serve them through a `@klotho::expose` annotated applocation.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 
@@ -42,7 +39,7 @@ curl http://localhost:3000/v1/images/myfile -X DELETE
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-media-storage -p aws
+npx tsc && klotho . --app ts-media-storage -p aws
 
 # Go into the compiled directory
 cd compiled
@@ -79,7 +76,6 @@ curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/v1/images/myfil
 
 # Delete an image by id is not supported yet in the cloud
 curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/v1/images/myfile -X DELETE
-```
 ```
 
 ## Clean Up

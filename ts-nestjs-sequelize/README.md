@@ -1,13 +1,10 @@
 # NestJS and Sequelize Sample App
 
-## Overview
-
 The NestJS + Sequelize sample application is a REST API for managing users built using the [NestJS](https://nestjs.com/) web framework and [Sequelize](https://sequelize.org/) ORM.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 
@@ -49,7 +46,7 @@ npm run test:cov
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-nestjs-sequelize -p aws
+npx tsc && klotho . --app ts-nestjs-sequelize -p aws
 
 # Go into the compiled directory
 cd compiled
