@@ -29,3 +29,7 @@ A [configuration file](./klotho.yaml) is provided to use Fargate for execution u
 ```bash
 klotho -c klotho.yaml
 ```
+After compilation, copy your discord config to allow the IaC to upload it as a secret:
+```bash
+cp discord_config.json compiled/
+```
