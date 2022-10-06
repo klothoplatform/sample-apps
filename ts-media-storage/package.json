@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "klotho": "scripts/klotho/npm/klotho",
+    "pulumi": "scripts/klotho/npm/pulumi"
+  },
   "name": "starter-kit",
   "version": "1.0.0",
   "license": "MIT",

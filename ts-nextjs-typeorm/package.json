@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "klotho": "scripts/klotho/npm/klotho",
+    "pulumi": "scripts/klotho/npm/pulumi",
     "dev": "npx tsc && node ./dist/server.js",
     "build": "npx tsc && next build",
     "start": "npx tsc && cross-env NODE_ENV=production node ./dist/server.js",
