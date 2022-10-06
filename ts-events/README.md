@@ -1,12 +1,9 @@
 # Events Sample App
 
-## Overview 
-
 The `ts-events` sample application demonstrates how to use the `@klotho::pubsub` annotation to achieve an event driven architecture. The sample application exposes one endpoint to demonstrate how using the `pubsub` annotation with EventEmitter can trigger subsequent events.
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 ## Install dependencies
@@ -16,7 +13,7 @@ npm install
 
 ## Run the app locally
 ```sh
-ts-node index.ts
+npx ts-node index.ts
 ```
 
 Test APIs with:
@@ -38,7 +35,7 @@ goodbye user
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-events -p aws
+npx tsc && klotho . --app ts-events -p aws
 
 # Go into the compiled directory
 cd compiled

@@ -1,13 +1,10 @@
 # TypeORM Sample App
 
-## Overview
-
-The secrets sample app shows how to use the `klotho::persist` annotation to store secrets.
+The typeorm sample app shows how to use the `klotho::persist` annotation with the [TypeORM](https://typeorm.io/) Library.
 
 ## Prerequisites
 
 This guide assumes:
-- `ts-node` and `tsc` installed globally OR `./node_modules/bin` is on the `PATH`.
 - pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
 
 ## Run the app locally
@@ -33,7 +30,7 @@ curl http://localhost:3000/user/john
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app ts-typeorm -p aws
+npx tsc && klotho . --app ts-typeorm -p aws
 
 # Go into the compiled directory
 cd compiled
