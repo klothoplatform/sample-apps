@@ -30,7 +30,7 @@ const client = async function() {
 }()
 
 const commands = [
-  new SlashCommandBuilder().setName('ping').setDescription('Replies with pong1'),
+  new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
 ].map(c => c.toJSON())
 
 client.then(async c => {

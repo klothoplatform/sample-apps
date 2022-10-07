@@ -1,5 +1,5 @@
 {
-  "name": "ts-websocket",
+  "name": "ts-discordjs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,5 +9,8 @@
   "author": "",
   "dependencies": {
     "discord.js": "^14.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.4"
   }
 }
