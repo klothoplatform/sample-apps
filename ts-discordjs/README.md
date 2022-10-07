@@ -21,7 +21,7 @@ The `discord_config.json` should look like:
 
 ## Run locally
 ```bash
-ts-config index.ts
+ts-node index.ts
 ```
 
 ## Klotho compile
