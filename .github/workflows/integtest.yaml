@@ -1,0 +1,32 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+name: integration tests
+jobs:
+  list-apps:
+    runs-on: ubuntu-latest
+    outputs:
+      to_test: ${{ steps.find_dirs.outputs.to_test }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: find test dirs
+        id: find_dirs
+        run: |
+          dirs_with_tests="$(find * -name test -maxdepth 1 -type d -exec dirname {} \; )"
+          as_json="$(echo "$dirs_with_tests" | jq -c -R --slurp 'split("\n") | map(select(length > 0))')"
+          echo "$as_json"
+          echo "to_test=$as_json" > $GITHUB_OUTPUT
+  test:
+    needs: list-apps
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app_to_test: ${{ fromJson(needs.list-apps.outputs.to_test) }}
+    steps:
+      - name: Hello world
+        run: echo "Hello from ${{ matrix.app_to_test }}"
+
+
