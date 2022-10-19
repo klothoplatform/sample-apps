@@ -8,6 +8,7 @@
  * @klotho::embed_assets {
  *   id = "public-assets"
  *   include = ["public/**", ".next/**"]
+ *   exclude = ["public/placeholder.md", ".next/placeholder.md"]
  * }
  */
 

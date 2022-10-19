@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "sample graphql app",
   "scripts": {
+    "klotho": "scripts/klotho/npm/klotho",
+    "pulumi": "scripts/klotho/npm/pulumi",
     "start": "ts-node src/index.ts"
   },
   "dependencies": {

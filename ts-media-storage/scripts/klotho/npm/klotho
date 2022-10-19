@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+source "$(dirname "$0")/_common.sh"
+
+if [[ ! -d node_modules ]]; then
+  npm ci
+fi
+npx tsc
+strict_mode=''
+if [[ -n "${KLOTHO_STRICT-}" ]]; then
+  strict_mode='--strict'
+fi
+klotho . $strict_mode --app "$KLOTHO_APP_NAME" --outDir "$KLOTHO_OUT_DIR"
+npm --prefix "$KLOTHO_OUT_DIR" install
