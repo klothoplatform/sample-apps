@@ -1,6 +1,6 @@
 # Redis Sample App
 
-The redis sample app shows how to use the `klotho::persist` annotation on a node redis client to store data.
+The redis sample app shows how to use the `klotho::persist` annotation on a node.js redis client to store data.
 
 ## Prerequisites
 

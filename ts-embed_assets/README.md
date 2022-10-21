@@ -1,5 +1,5 @@
 # Embedding Assets Sample App
-The `ts-embed_assets` sample application demonstrates how to use the `@klotho::embed_assets` annotation to direct klotho to include static assets into an execution unit. The sample application exposes three endpoints to demonstrate the embedded assets and exlude directive on `embed_assets` the annotation.
+The `ts-embed_assets` sample application demonstrates how to use the `@klotho::embed_assets` annotation to direct klotho to include static assets into an execution unit. The sample application exposes three endpoints and showcases the include and exlude directive on the `embed_assets` the annotation.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ pulumi up -s $USER-ts-embed-assets
 ## Calling your service
 
 ```sh
-curl  https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello
+curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello
 # > hi
 
 # Get the hello.txt

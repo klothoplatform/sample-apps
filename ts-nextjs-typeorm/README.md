@@ -58,3 +58,8 @@ pulumi up -s ts-nextjs-typeorm
 ## Calling your service
 
 For instructions on calling your service, follow the (tutorial)[https://klo.dev/docs/tutorials/use_cases/nextjs_typeorm] for complete steps.
+
+## Clean Up
+```sh
+# Tear down when done
+pulumi destroy -s ts-nextjs-typeorm
