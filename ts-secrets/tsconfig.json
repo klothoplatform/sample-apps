@@ -21,7 +21,6 @@
     "static/compiler-test-sources/compiled/**",
     "test/pulumi",
     "merger/**"
-    
   ],
   "lib": ["ES2019"]
 }
