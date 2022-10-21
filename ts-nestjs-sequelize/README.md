@@ -1,7 +1,12 @@
-# ts-nest-sequelize
+# NestJS and Sequelize Sample App
 
-## Description
 The NestJS + Sequelize sample application is a REST API for managing users built using the [NestJS](https://nestjs.com/) web framework and [Sequelize](https://sequelize.org/) ORM.
+
+## Prerequisites
+
+This guide assumes:
+- pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
+
 
 #### Klotho Annotations Used
 
@@ -16,29 +21,24 @@ The NestJS + Sequelize sample application is a REST API for managing users built
 - `GET /users/:id` - Gets the user associated with the supplied `id` path parameter from the database.
 This application uses Nest's `ExpressAdapter` to take advantage of Klotho's existing support for Express.
 
-## Installation
-
-```bash
-$ npm install
-```
-
 ## Running the app locally
 
 ```bash
-$ npm run start
+npm install
+npm run start
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+npm run test
 
 # e2e tests
-$ npm run test:e2e
+npm run test:e2e
 
 # test coverage
-$ npm run test:cov
+npm run test:cov
 ```
 
 ## Compile and Deploy with Klotho
@@ -46,23 +46,23 @@ $ npm run test:cov
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho . --app $USER-ts-nestjs-sequelize -p aws
+npx tsc && klotho . --app ts-nestjs-sequelize -p aws
 
 # Go into the compiled directory
 cd compiled
 
 # If you didn't set the aws region as indicated in the compiler output, do that now
-pulumi config set aws:region <YOUR_REGION> -s $USER-ts-nestjs-sequelize
+pulumi config set aws:region <YOUR_REGION> -s ts-nestjs-sequelize
 
 # Set a username and password to be used for accessing `UsersDB`
-pulumi config set $USER-ts-nestjs-sequelize:usersdb_username <USERNAME> -s $USER-ts-nestjs-sequelize
-pulumi config set --secret $USER-ts-nestjs-sequelize:usersdb_password <PASSWORD> -s $USER-ts-nestjs-sequelize
+pulumi config set ts-nestjs-sequelize:usersdb_username <USERNAME> -s ts-nestjs-sequelize
+pulumi config set --secret ts-nestjs-sequelize:usersdb_password <PASSWORD> -s ts-nestjs-sequelize
 
 # npm install pulumi dependencies
 npm install
 
 # Deploy
-pulumi up -s $USER-ts-nestjs-sequelize
+pulumi up -s ts-nestjs-sequelize
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
@@ -112,5 +112,5 @@ curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/users
 From the compiled directory still,
 ```sh
 # Tear down when done
-pulumi destroy -s $USER-ts-nestjs-sequelize
+pulumi destroy -s ts-nestjs-sequelize
 ```
