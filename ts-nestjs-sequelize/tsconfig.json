@@ -24,6 +24,7 @@
     "compiledTestOutput", 
     "static/*",
     "static/compiler-test-sources/compiled/**",
-    "merger/**"
+    "merger/**",
+    "test"
   ]
 }

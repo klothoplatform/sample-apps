@@ -1,22 +1,51 @@
 # Redis Sample App
 
+The redis sample app shows how to use the `klotho::persist` annotation on a node redis client to store data.
+
+## Prerequisites
+
+This guide assumes:
+- pulumi is [configured with the proper AWS credentials](https://www.pulumi.com/docs/get-started/aws/begin/#configure-pulumi-to-access-your-aws-account)
+
 ## Run the app locally
+
+To install redis locally follow the instructions on the official redis [getting started page](https://redis.io/docs/getting-started/)
+
+```sh
+npm i 
+npx ts-node index.ts
+```
+
+Hit your endpoints
+```sh
+curl -X POST http://localhost:3000/user -d '{"firstName": "john", "lastName": "doe"}' -H "Content-Type: application/json"
+# > success%
+
+curl http://localhost:3000/user/john
+# > doe%
+```
 
 ## Compile and Deploy with Klotho
 
 run the terminal commands:
 ```sh
 # Compile the app
-tsc && klotho ./dist --app sample-ts-redis
+npx tsc && klotho . --app ts-redis -p aws
+
+# Go into the compiled directory
+cd compiled
+
+# If you didn't set the aws region as indicated in the compiler output, do that now
+pulumi config set aws:region YOUR_REGION -s ts-redis
 
 # npm install
-npm --prefix ./compiled install
+npm install
 
 # Deploy
-pulumi up -C ./compiled -s klotho-redis-example
+pulumi up -s ts-redis
 
 # Outputs: {
-#   apiUrl: 'https://<...>.execute-api.us-east-1.amazonaws.com/stage/'
+#   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
 # }
 
 ```
@@ -35,5 +64,5 @@ curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/user/john
 ## Clean Up
 ```sh
 # Tear down when done
-pulumi destroy -C ./compiled -s klotho-redis-example
+pulumi destroy -s ts-redis
 ```
