@@ -32,7 +32,7 @@ const secretsPolicy: StackValidationPolicy = {
     enforcementLevel: "mandatory",
     validateStack: async (args, reportViolation) => {
         const secrets = args.resources.filter(r => r.isType(aws.secretsmanager.Secret));
-        if (secrets.length !== 1) {
+        if (secrets.length !== 3) {
             reportViolation(`Expected one secret but found ${secrets.length}`);
             return;
         }

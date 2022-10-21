@@ -8,19 +8,21 @@ const lambdaPolicy: StackValidationPolicy = {
     enforcementLevel: "mandatory",
     validateStack: async (args, reportViolation) => {
         const lambdas = args.resources.filter(r => r.isType(aws.lambda.Function));
-        if (lambdas.length !== 1) {
+        if (lambdas.length !== 2) {
             reportViolation(`Expected one lambda function but found ${lambdas.length}`);
             return;
         }
 
-        const lambda = lambdas[0].asType(aws.lambda.Function)!;
-        if (lambda.memorySize !== 512) {
-            reportViolation(
-                `Expected rds Instance '${lambda.name}' allocated storage to be '512' but found '${lambda.memorySize}'`);
-        }
-        if (lambda.timeout !== 180) {
-            reportViolation(
-                `Expected rds Instance '${lambda.name}' allocated storage to be '180' but found '${lambda.timeout}'`);
+        for (const lambdaObj of lambdas) {
+          const lambda = lambdaObj.asType(aws.lambda.Function)!
+          if (lambda.memorySize !== 512) {
+              reportViolation(
+                  `Expected rds Instance '${lambda.name}' allocated storage to be '512' but found '${lambda.memorySize}'`);
+          }
+          if (lambda.timeout !== 180) {
+              reportViolation(
+                  `Expected rds Instance '${lambda.name}' allocated storage to be '180' but found '${lambda.timeout}'`);
+          }
         }
         // TODO: check remainder of the resources set by klotho.yaml or others we want to validate
     },

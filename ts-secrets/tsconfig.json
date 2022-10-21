@@ -19,6 +19,7 @@
     "compiledTestOutput", 
     "static/*",
     "static/compiler-test-sources/compiled/**",
+    "test/pulumi",
     "merger/**"
     
   ],
