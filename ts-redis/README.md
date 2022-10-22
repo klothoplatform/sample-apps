@@ -2,6 +2,7 @@
 
 The redis sample app shows how to use the `klotho::persist` annotation on a node.js redis client to store data.
 
+
 ## Prerequisites
 
 This guide assumes:
