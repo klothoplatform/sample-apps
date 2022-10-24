@@ -18,6 +18,6 @@ export const router = require('express').Router();
  */
 
 router.get("/static/:file", async (req, res) => {
-  const content = await fs.readFile(`static/${req.params.file}`)
+  const content = await fs.readFile(`static/${req.params.file}`, 'utf8')
   res.send(content)
 })
