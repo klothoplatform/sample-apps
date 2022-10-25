@@ -66,16 +66,12 @@ curl -X POST https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello/u
 # >
 ```
 
-<<<<<<< HEAD
 You will see 3 different cloudwatch log groups specifying the sequence of events in the cloud deployed application.
-=======
+
 ```sh
 $ curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello/user
 # > user%
 ```
-
-You will see 3 different cloudwatch log groups specifying how the sequence of events in the cloud deployed application.
->>>>>>> 0e6baf0 (placeholder)
 
 /aws/lambda/ts-events-events-api
 ```
