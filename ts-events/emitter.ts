@@ -1,4 +1,4 @@
-import events = require("events")
+import * as events from "events"
 
 /* @klotho::pubsub {
 *  id = "myEmitter"
