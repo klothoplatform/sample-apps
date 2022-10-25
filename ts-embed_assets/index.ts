@@ -1,8 +1,8 @@
-import express = require('express')
+import * as express from 'express'
 import * as hello from './hello'
 import * as content from './static'
 
-export const app = express()
+const app = express()
 app.use(express.json())
 
 
@@ -17,3 +17,6 @@ app.listen(3000, async () => {
 
 app.use(hello.router)
 app.use(content.router)
+
+export {app}
+
