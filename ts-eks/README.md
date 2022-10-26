@@ -31,19 +31,19 @@ curl localhost:3000/users
 run the terminal commands:
 ```sh
 # Compile the app
-npx tsc && klotho . --app ts-microservices -p aws
+npx tsc && klotho . --app ts-eks -p aws
 
 # Go into the compiled directory
 cd compiled
 
 # If you didn't set the aws region as indicated in the compiler output, do that now
-pulumi config set aws:region YOUR_REGION -s ts-microservices
+pulumi config set aws:region YOUR_REGION -s ts-eks
 
 # npm install
 npm install
 
 # Deploy
-pulumi up -s ts-microservices
+pulumi up -s ts-eks
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
@@ -66,5 +66,5 @@ curl localhost:3000/users
 From the compiled directory still,
 ```sh
 # Tear down when done
-pulumi destroy -s ts-microservices
+pulumi destroy -s ts-eks
 ```
