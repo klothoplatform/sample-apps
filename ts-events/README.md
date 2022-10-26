@@ -21,6 +21,11 @@ Test APIs with:
 $ curl -X POST localhost:3000/hello/user
 ```
 
+```
+$ curl localhost:3000/hello/user
+# > user%
+```
+
 You will see logged output on your server:
 ```
 got { params: { user: 'user' } }
@@ -62,6 +67,11 @@ curl -X POST https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello/u
 ```
 
 You will see 3 different cloudwatch log groups specifying the sequence of events in the cloud deployed application.
+
+```sh
+$ curl https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/hello/user
+# > user%
+```
 
 /aws/lambda/ts-events-events-api
 ```
