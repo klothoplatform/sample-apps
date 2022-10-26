@@ -1,9 +1,6 @@
 import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 import { PolicyPack, validateResourceOfType, StackValidationPolicy } from "@pulumi/policy";
-import {KlothoPolicyPackGenerator} from '../../../policy-pack-generator/policy-pack-generator'
-
-const gen = new KlothoPolicyPackGenerator('../../compiled/klotho.yaml')
 
 const lambdaPolicy: StackValidationPolicy = {
     name: "lambda-test",
