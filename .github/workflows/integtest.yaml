@@ -1,0 +1,103 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+name: integration tests
+jobs:
+  list-apps:
+    runs-on: ubuntu-latest
+    outputs:
+      to_test: ${{ steps.find_dirs.outputs.to_test }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: find test dirs
+        id: find_dirs
+        run: |
+          dirs_with_tests="$(
+            for d in $(find * -type d -maxdepth 0 || printf ''); do
+              jq &>/dev/null -e '.scripts."integ-test"' $d/package.json && echo "$d"
+            done
+            exit 0 # otherwise, will fail if the last dir failed the jq match
+          )"
+          as_json="$(echo "$dirs_with_tests" | jq -c -R --slurp 'split("\n") | map(select(length > 0))')"
+          if [[ "$as_json" == '[]' ]]; then
+            echo "::error ::No tests found"
+            exit 1
+          fi
+          echo "$as_json" | jq .
+          echo "to_test=$as_json" > $GITHUB_OUTPUT
+
+  run-test:
+    needs: list-apps
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app_to_test: ${{ fromJson(needs.list-apps.outputs.to_test) }}
+    services:
+      redis:
+        image: redis
+        ports:
+        - 6379/tcp
+        # Set health checks to wait until redis has started, but only for ts-redis.
+        # ${{ condition && ifTrue || ifFalse }} works as a ternary operator.
+        # We always need some valid docker option (even in the false case -- an empty string results in an error),
+        # so if this isn't a redis service, just set CPUs to 1 as some arbitrary option.
+        options: 
+          ${{ matrix.app_to_test == 'ts-redis' 
+          && '--health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5'
+          || '--cpus 1' }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: npm install
+        run: npm install
+        working-directory: ${{ matrix.app_to_test }}
+      - name: tsc
+        run: npx tsc
+        working-directory: ${{ matrix.app_to_test }}
+      - name: service start
+        id: service-start
+        working-directory: ${{ matrix.app_to_test }}
+        run: |
+          if [[ -f test/integ_test_hooks/localhost-start.sh ]]; then
+            cmd='bash test/integ_test_hooks/localhost-start.sh'
+          else
+            cmd='node dist/index.js'
+          fi
+          echo "Using start command: $cmd"
+          $cmd >$RUNNER_TEMP/service.out 2>$RUNNER_TEMP/service.err &
+          node_pid=$!
+          echo "node-pid=$node_pid" >> $GITHUB_OUTPUT
+        env:
+          REDIS_PORT: ${{ job.services.redis.ports[6379] }}
+      - name: run tests
+        working-directory: ${{ matrix.app_to_test }}
+        run: |
+          # Note: We shouldn't need a global retry, but we do, due to async sets. See issues #44 and #33.
+          INTEG_TEST_ATTEMPTS=3
+          for try_num in $(seq $INTEG_TEST_ATTEMPTS); do
+            echo "::group::Attempt $try_num"
+            if API_ENDPOINT=http://localhost:3000 npm run integ-test ; then
+              echo "::notice title=npm run integ-test succeeded::Succeeded on attempt $try_num"
+              echo "::endgroup"
+              exit
+            fi
+            sleep 5
+            echo "::endgroup"
+          done
+          echo "::error title=npm run integ-test failed::Failed after $INTEG_TEST_ATTEMPTS attempts"
+          exit 1
+      - name: service stop
+        if: always() && steps.service-start.outputs.node-pid
+        run: kill ${{ steps.service-start.outputs.node-pid }}
+      - name: echo service output
+        if: always()
+        run: |
+          echo '::group::stdout'
+          cat $RUNNER_TEMP/service.out
+          echo '::endgroup'
+          echo '::group::stderr'
+          cat $RUNNER_TEMP/service.err
+          echo '::endgroup'
