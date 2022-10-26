@@ -15,8 +15,9 @@
   "exclude": [
     "*.js",
     "dist/",
+    "compiled/*",
     "compiled*/",
-    "test/"
+    "test/*"
   ],
   "lib": ["ES2019"]
 }

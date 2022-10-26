@@ -1,6 +1,6 @@
 /**
  * @klotho::execution_unit {
- *  id = "sequelize-main"
+ *  id = "user-info"
  * }
  */
 
@@ -33,8 +33,8 @@ async function setupSequelize(): Promise<Sequelize> {
 interface attribs
   extends Model<InferAttributes<attribs>, InferCreationAttributes<attribs>> {
     user: string,
-  age: string;
-  org: string;
+    age: string;
+    org: string;
 }
 
 const KV = sequelize.then(async (client) => {

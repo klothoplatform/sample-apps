@@ -1,4 +1,4 @@
-app: ts-microservices
+app: ts-eks
 provider: aws
 path: .
 out_dir: compiled
@@ -43,15 +43,15 @@ defaults:
     pubsub:
         type: sns
 execution_units:
-    microsrv-api:
+    users-api:
         type: eks
         pulumi_params:
             nodeType: node
-    microsrv-users:
+    users-store:
         type: eks
         pulumi_params:
             nodeType: node
-    sequelize-main:
+    user-info:
         type: eks
         pulumi_params:
             nodeType: fargate
