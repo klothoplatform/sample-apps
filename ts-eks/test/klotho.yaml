@@ -47,14 +47,30 @@ execution_units:
         type: eks
         pulumi_params:
             nodeType: node
+            replicas: 1
+            nodeConstraints:
+                instanceType: c4.large
+                diskSize: 20
+            limits: 
+                cpu: 1
+                memory: 256
+            autoscalingConfig:
+                cpuUtilization: 100
+                memoryUtilization: 100
+                maxReplicas: 4
     users-store:
         type: eks
         pulumi_params:
             nodeType: node
+            nodeConstraints:
+                instanceType: t3.large
+                diskSize: 200
     user-info:
         type: eks
         pulumi_params:
-            nodeType: fargate
+            nodeType: node
+            nodeConstraints:
+                diskSize: 100
 exposed:
     app:
         type: apigateway
