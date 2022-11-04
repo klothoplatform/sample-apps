@@ -37,11 +37,19 @@ const ecsFargatePolicy: StackValidationPolicy = {
             return;
         }
         const task = ecsTasks[0].asType(aws.ecs.TaskDefinition)!
-        if (task.cpu !== '128') {
-            reportViolation(`Expected ecs task '${task.id}' cpu to be '128' but found '${task.cpu}'`);
+
+        const containerDefinitions = JSON.parse(task.containerDefinitions)
+        if (containerDefinitions.length !== 1) {
+            reportViolation(`Expected one container but found ${containerDefinitions.length}`);
+            return;
         }
-        if (task.memory !== '256') {
-            reportViolation(`Expected ecs task '${task.id}' memory to be '256' but found '${task.memory}'`);
+        const container = containerDefinitions[0]
+
+        if (container.cpu !== 128) {
+            reportViolation(`Expected ecs task container definition '${container.name}' cpu to be '128' but found '${container.cpu}'`);
+        }
+        if (container.memory !== 256) {
+            reportViolation(`Expected ecs task container definition'${container.name}' memory to be '256' but found '${container.memory}'`);
         }
     },
 }
