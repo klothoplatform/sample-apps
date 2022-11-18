@@ -14,13 +14,13 @@ const lambdaPolicy: StackValidationPolicy = {
         }
 
         const lambda = lambdas[0].asType(aws.lambda.Function)!;
-        if (lambda.memorySize !== 1024) {
+        if (lambda.memorySize !== 512) {
             reportViolation(
-                `Expected lambda function '${lambda.name}' allocated storage to be '1024' but found '${lambda.memorySize}'`);
+                `Expected lambda function '${lambda.name}' allocated storage to be '512' but found '${lambda.memorySize}'`);
         }
-        if (lambda.timeout !== 120) {
+        if (lambda.timeout !== 180) {
             reportViolation(
-                `Expected lambda function '${lambda.name}' allocated storage to be '120' but found '${lambda.timeout}'`);
+                `Expected lambda function '${lambda.name}' allocated storage to be '180' but found '${lambda.timeout}'`);
         }
         // TODO: check remainder of the resources set by klotho.yaml or others we want to validate
     },
