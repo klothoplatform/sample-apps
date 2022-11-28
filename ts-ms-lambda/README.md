@@ -1,6 +1,6 @@
 # Media Storage Sample App
 
-The `ts-microservices` sample application demonstrates how to use the `@klotho::exec_unit` annotation to split an application up into smaller, functional units.
+The `ts-ms-lambda` sample application demonstrates how to use the `@klotho::exec_unit` annotation to split an application up into smaller, functional units.
 
 ## Prerequisites
 
@@ -31,19 +31,19 @@ curl localhost:3000/users
 run the terminal commands:
 ```sh
 # Compile the app
-npx tsc && klotho . --app ts-microservices -p aws
+npx tsc && klotho . --app ts-ms-lambda -p aws
 
 # Go into the compiled directory
 cd compiled
 
 # If you didn't set the aws region as indicated in the compiler output, do that now
-pulumi config set aws:region YOUR_REGION -s ts-microservices
+pulumi config set aws:region YOUR_REGION -s ts-ms-lambda
 
 # npm install
 npm install
 
 # Deploy
-pulumi up -s ts-microservices
+pulumi up -s ts-ms-lambda
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
@@ -66,5 +66,5 @@ curl localhost:3000/users
 From the compiled directory still,
 ```sh
 # Tear down when done
-pulumi destroy -s ts-microservices
+pulumi destroy -s ts-ms-lambda
 ```
