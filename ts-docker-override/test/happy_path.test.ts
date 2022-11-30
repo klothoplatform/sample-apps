@@ -29,4 +29,13 @@ describe('Happy Path Test', () => {
         
         expect(actualResponse.data).toContain("Hello Klotho!")
     })
+
+    test('Get override', async () => {
+        const actualResponse = await axios({
+            method: 'get',
+            url: `${apiEndpoint}/override`,
+        });
+        
+        expect(actualResponse.data).toContain("docker overide")
+    })
 })
