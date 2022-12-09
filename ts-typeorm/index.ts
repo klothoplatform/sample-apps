@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *  id = "sequelize-main"
- * }
- */
-
 import * as express from "express";
 import {write, find} from './typeorm/logic'
 

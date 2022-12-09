@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *  id = "redis-main"
- * }
- */
-
 import * as express from "express";
 import { createClient } from 'redis';
 

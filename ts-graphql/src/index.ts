@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *   id = "graphql-api"
- * }
- */
-
 import { ApolloServer } from "apollo-server-express";
 import * as express from "express";
 import "reflect-metadata";
