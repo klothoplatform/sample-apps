@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *   id = "srvless-quotes"
- * }
- */
-
 export const router = require('express').Router();
 
 

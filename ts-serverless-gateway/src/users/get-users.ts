@@ -1,10 +1,3 @@
-/**
- * @klotho::execution_unit {
- *   id = "srvless-userget"
- * }
- */
-
-
 export const router = require('express').Router();
 
 function getUsers(event, res) {
