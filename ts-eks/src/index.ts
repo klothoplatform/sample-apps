@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *   id = "users-api"
- * }
- */
-
 import express = require('express')
 import { addUser, getUsers } from './users';
 import {set, getOrg} from './userInfo'
