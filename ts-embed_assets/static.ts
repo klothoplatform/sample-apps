@@ -1,10 +1,3 @@
-/**
- * 
- * @klotho::execution_unit {
- *   id = "assets-static"
- * }
- */
-
 import * as fs from "fs/promises"
 
 export const router = require('express').Router();
