@@ -1,10 +1,4 @@
 /**
- * @klotho::execution_unit {
- *   id = "NextAPI"
- * }
- */
-
-/**
  * @klotho::embed_assets {
  *   id = "public-assets"
  *   include = ["public/**", ".next/**"]

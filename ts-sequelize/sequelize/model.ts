@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *  id = "sequelize-main"
- * }
- */
-
 import {
   DataTypes,
   InferAttributes,

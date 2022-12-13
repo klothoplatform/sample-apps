@@ -1,12 +1,4 @@
 /**
- * @klotho::execution_unit {
- *  id = "secrets-main"
- * }
- */
-
-
-
-/**
  * @klotho::persist {
  *  secret = true
  * id = "secret"
