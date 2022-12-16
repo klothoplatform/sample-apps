@@ -5,6 +5,7 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "main": "main.js",
   "scripts": {
     "klotho": "scripts/klotho/npm/klotho",
     "pulumi": "scripts/klotho/npm/pulumi",
