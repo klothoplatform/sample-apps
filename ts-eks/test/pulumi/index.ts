@@ -9,42 +9,26 @@ const eksPolicy: StackValidationPolicy = {
     validateStack: async (args, reportViolation) => {
         const eksClusters = args.resources.filter(r => r.isType(aws.eks.Cluster));
         if (eksClusters.length !== 1) {
-            reportViolation(`Expected one lambda function but found ${eksClusters.length}`);
+            reportViolation(`Expected EKS cluster but found ${eksClusters.length}`);
             return;
         }
         const cluster = eksClusters[0].asType(aws.eks.Cluster)
 
         const nodeGroups = args.resources.filter(r => r.isType(aws.eks.NodeGroup));
-        if (nodeGroups.length !== 2) {
-            reportViolation(`Expected two Node Groups but found ${nodeGroups.length}`);
+        if (nodeGroups.length !== 1) {
+            reportViolation(`Node groups: expected 1 but found ${nodeGroups.length}`);
             return;
         }
 
-        let t3NodeGroupName;
-        let c4NodeGroupName;
-        console.log(nodeGroups[0].type)
-        for (const i in nodeGroups) {
-            const group = nodeGroups[i].asType(aws.eks.NodeGroup)!;
-
-            if (group.clusterName != cluster?.name) {
-                reportViolation(`Expected cluster name for node group to be ${cluster?.name}, but found ${group.clusterName}`)
-            }
-
-            if (group.nodeGroupName.includes("c4-large")) {
-                c4NodeGroupName = group.nodeGroupName
-                group.diskSize !== 100 ?  reportViolation(`Expected disk size to be '100' fo 'c4.large' node group, but found ${group.diskSize}`) : null
-            } else if (group.nodeGroupName.includes("t3-large")) {
-                t3NodeGroupName = group.nodeGroupName
-                group.diskSize !== 200 ?  reportViolation(`Expected disk size to be '200' fo 't3.large' node group, but found ${group.diskSize}`) : null
-            } else {
-                reportViolation(`Unknown Node Group, found ${group.nodeGroupName}`)
-            }
+        const group = nodeGroups[0].asType(aws.eks.NodeGroup)!;
+        if (group.clusterName != cluster?.name) {
+            reportViolation(`Expected cluster name for node group to be ${cluster?.name}, but found ${group.clusterName}`)
         }
-
+        group.diskSize !== 200 ?  reportViolation(`Expected disk size to be '200' fo 't3.large' node group, but found ${group.diskSize}`) : null
 
         const k8Services = args.resources.filter(r => r.isType(k8s.core.v1.Service));
-        if (k8Services.length !== 3) {
-            reportViolation(`Expected three kubernetes services but found ${k8Services.length}`);
+        if (k8Services.length !== 1) {
+            reportViolation(`Expected 1 kubernetes service but found ${k8Services.length}`);
             return;
         }
         // Pulumi Bug which does not typecase k8s resources correctly. https://github.com/pulumi/pulumi-policy/issues/300
@@ -62,8 +46,8 @@ const eksPolicy: StackValidationPolicy = {
 
 
         const k8Deployments = args.resources.filter(r => r.isType(k8s.apps.v1.Deployment));
-        if (k8Deployments.length !== 3) {
-            reportViolation(`Expected three kubernetes deployments but found ${k8Deployments.length}`);
+        if (k8Deployments.length !== 1) {
+            reportViolation(`Expected 1 kubernetes deployment but found ${k8Deployments.length}`);
             return;
         }
         // Pulumi Bug which does not typecase k8s resources correctly. https://github.com/pulumi/pulumi-policy/issues/300

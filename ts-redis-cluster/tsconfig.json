@@ -6,8 +6,11 @@
     "sourceMap": true,
     "outDir": "./dist/",
     "skipLibCheck": true,
-    "strictNullChecks": true, 
-    "types": ["node", "jest"],
+    "strictNullChecks": true,
+    "types": [
+      "node",
+      "jest"
+    ],
     "allowJs": true,
     "checkJs": true,
     "sourceRoot": "src/"
@@ -15,12 +18,14 @@
   "exclude": [
     "**/*.js",
     "dist/**",
-    "compiled", 
-    "compiledTestOutput", 
+    "compiled",
+    "compiledTestOutput",
     "static/*",
     "static/compiler-test-sources/compiled/**",
-    "test/*",
-    "merger/**"
+    "merger/**",
+    "test/*"
   ],
-  "lib": ["ES2019"]
+  "lib": [
+    "ES2019"
+  ]
 }

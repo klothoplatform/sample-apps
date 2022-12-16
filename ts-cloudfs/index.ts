@@ -1,10 +1,3 @@
-/**
- * @klotho::execution_unit {
- *  id = "cloudfs-main"
- * }
- */
-
-
 /* @klotho::persist {
  * id = "fs"
  * }

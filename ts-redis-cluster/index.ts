@@ -1,5 +1,11 @@
+/**
+ * @klotho::execution_unit {
+ *  id = "redis-main"
+ * }
+ */
+
 import * as express from "express";
-import { createClient } from 'redis';
+import { createCluster } from 'redis';
 
 const setupRedisClient = async () => {
   let port: number | undefined = undefined
@@ -12,11 +18,19 @@ const setupRedisClient = async () => {
   *   id = "redis"
   * }
   */
-  const client = createClient({socket: {
-    host: process.env.REDIS_HOST,
-    port: port,
-    keepAlive: 5000
-  }})
+  const client = createCluster({
+    rootNodes:[
+      {
+        url: 'redis://127.0.0.1:8001'
+      },
+      {
+        url: 'redis://127.0.0.1:8002'
+      },
+      {
+        url: 'redis://127.0.0.1:8003'
+      }
+    ],
+  })
   await client.connect()
   return client
 }

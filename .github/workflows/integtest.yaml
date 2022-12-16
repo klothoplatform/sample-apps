@@ -57,6 +57,24 @@ jobs:
       - name: tsc
         run: npx tsc
         working-directory: ${{ matrix.app_to_test }}
+      - name: Test redis cluster
+        if: matrix.app_to_test == 'ts-redis-cluster'
+        uses: vishnudxb/redis-cluster@1.0.5
+        with:
+          master1-port: 8000
+          master2-port: 8001
+          master3-port: 8002
+          slave1-port: 8003
+          slave2-port: 8004
+          slave3-port: 8005
+           # Running Test
+      - name: ping redis cluster
+        if: matrix.app_to_test == 'ts-redis-cluster'
+        run: |
+          sudo apt-get install -y redis-tools
+          docker ps -a
+          redis-cli -h 127.0.0.1 -p 8000 ping
+          redis-cli -h 127.0.0.1 -p 8000 cluster nodes
       - name: service start
         id: service-start
         working-directory: ${{ matrix.app_to_test }}

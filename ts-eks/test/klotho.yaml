@@ -43,14 +43,14 @@ defaults:
     pubsub:
         type: sns
 execution_units:
-    users-api:
+    main:
         type: eks
         pulumi_params:
             nodeType: node
             replicas: 1
             nodeConstraints:
                 instanceType: c4.large
-                diskSize: 20
+                diskSize: 200
             limits: 
                 cpu: 1
                 memory: 256
@@ -58,19 +58,6 @@ execution_units:
                 cpuUtilization: 100
                 memoryUtilization: 100
                 maxReplicas: 4
-    users-store:
-        type: eks
-        pulumi_params:
-            nodeType: node
-            nodeConstraints:
-                instanceType: t3.large
-                diskSize: 200
-    user-info:
-        type: eks
-        pulumi_params:
-            nodeType: node
-            nodeConstraints:
-                diskSize: 100
 exposed:
     app:
         type: apigateway

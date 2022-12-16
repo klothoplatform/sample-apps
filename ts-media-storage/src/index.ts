@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *   id = "media-imageapi"
- * }
- */
-
 import * as express from 'express';
 import * as fs from 'fs';
 var multer  = require('multer')

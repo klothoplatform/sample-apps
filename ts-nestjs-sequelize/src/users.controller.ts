@@ -1,8 +1,3 @@
-/* @klotho::execution_unit {
- *   id = "UsersAPI"
- * }
- */
-
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UserModel } from './users.model';

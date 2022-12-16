@@ -10,7 +10,6 @@ This guide assumes:
 
 #### Klotho Annotations Used
 
-- `@klotho::execution_unit`
 - `@klotho::expose`
 - `@klotho::persist`
 
