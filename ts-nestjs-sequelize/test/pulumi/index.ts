@@ -7,8 +7,9 @@ const stackPolicy: StackValidationPolicy = {
     enforcementLevel: "mandatory",
     validateStack: async (args, reportViolation) => {
         const lambdas = args.resources.filter(r => r.isType(aws.lambda.Function));
-        if (lambdas.length !== 1) {
-            reportViolation(`Expected one lambda function but found ${lambdas.length}`);
+        const expectedCount = 1
+        if (lambdas.length !== expectedCount) {
+            reportViolation(`Expected ${expectedCount} lambda function but found ${lambdas.length}`);
             return;
         }
 

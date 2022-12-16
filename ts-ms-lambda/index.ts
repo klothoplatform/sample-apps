@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *   id = "microsrv-api"
- * }
- */
-
 import express = require('express')
 import { addUser, getUsers } from './users';
 
