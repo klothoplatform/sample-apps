@@ -1,11 +1,4 @@
 /**
- * 
- * @klotho::execution_unit {
- *   id = "microsrv-users"
- * }
- */
-
-/**
  * @klotho::persist {
  *   id = "users"
  * }
