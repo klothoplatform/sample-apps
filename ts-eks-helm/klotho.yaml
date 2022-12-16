@@ -1,0 +1,17 @@
+app: ts-eks-helm
+provider: aws
+path: .
+out_dir: compiled
+execution_units:
+    users-api:
+        type: eks
+        helm_chart_options:
+            install: true
+    users-store:
+        type: eks
+        helm_chart_options:
+            install: true
+    user-info:
+        type: eks
+        helm_chart_options:
+            install: true
