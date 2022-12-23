@@ -8,9 +8,6 @@ export const router = require('express').Router();
  */
 let quoteStore = new Map<string, string>();
 
-quoteStore.delete("options")
-
-
 async function postQuote(req, res) {
     try {
         await quoteStore.set(req.body.quote, req.body.quote);

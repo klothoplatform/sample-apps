@@ -27,8 +27,6 @@ import cloudEnabledFS = require("fs/promises");
 */
 let imageStore = new Map<string, string>();
 
-imageStore.delete("options")
-
 function setupExpressApp() {
   const app: any = express();
   const router = express.Router();
