@@ -3,7 +3,7 @@ This repo holds sample applications which demonstrate how to use Klotho to compi
 
 ## Typescript
 - [ES6 Map Persistence](./ts-cloudfs) Using file-like API to access cloud blob storage
-- [Serverless](./ts-serverless-gateway) Shows how to add the `klotho::expose` capability to an `express` server to discover HTTP routes, automatically configuring gateway resources to route directly to the execution unit
+- [Serverless](./ts-serverless-gateway) Shows how to add the `klotho::expose` capability to an [`express`](https://www.npmjs.com/package/express) server to discover HTTP routes, automatically configuring gateway resources to route directly to the execution unit
 - [Embed Assets](./ts-embed_assets) Include non-code assets to an execution unit
 - [Secret handling](./ts-secrets) Shows how to use `klotho::persist` for secret handling
 - [Yoga GraphQL Server](./ts-graphql) Add the `klotho::expose` capability to an `express` app that uses [`type-graphql`](https://www.npmjs.com/package/type-graphql) +Apollo to expose a GraphQL server to the internet with an API gateway
