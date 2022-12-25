@@ -7,7 +7,7 @@ This repo holds sample applications which demonstrate how to use Klotho to compi
 - [Embed Assets](./ts-embed_assets) Include non-code assets to an execution unit
 - [Secret handling](./ts-secrets) Shows how to use `klotho::persist` for secret handling
 - [Yoga GraphQL Server](./ts-graphql) Add the `klotho::expose` capability to an `express` app that uses [`type-graphql`](https://www.npmjs.com/package/type-graphql) +Apollo to expose a GraphQL server to the internet with an API gateway
-- [Media Storage](./ts-media-storage) Using a combination of the `klotho::persist` capability, storing images in blob storage, and using `klotho::persist` on an ES6 map for storing image metadata using a key-value store
+- [Media Storage](./ts-media-storage) Uses a combination of the `klotho::persist` capability, storing images in blob storage, and using `klotho::persist` on an ES6 map for storing image metadata using a key-value store
 - [Sequelize](./ts-sequelize) Shows how to add the `klotho::persist` capability to a Sequelize instance for relational data persistence.
 - [TypeORM](./ts-typeorm) Shows how to add the `klotho::persist` capability to a TypeORM instance for relational data persistence.
 - [Discord Bot](./ts-discordjs) A sample Discord Bot
