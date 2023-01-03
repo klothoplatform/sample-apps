@@ -5,29 +5,30 @@ In this sample application, we showcase how we can staticly host the [TypeScript
 
 ### Run the application locally
 
-To run the initial application locally, we will follow the instructions below, presented from the GitHub page's [readme](https://github.com/tastejs/todomvc/blob/master/examples/typescript-react/readme.md)
+To run the initial application locally, we will follow the instructions below
 
-> A standalone TypeScript compiler is available on NPM.
->
-> ```
-> npm install typescript
-> ```
->
-> To compile the TypeScript in this project:
->
-> ```
-> # from examples/typescript-react
-> $ ./node_modules/typescript/bin/tsc -p ./js/
-> ```
->
-> To be able to run the output JS files in the browser:
->
-> ```
-> # from examples/typescript-react
-> $ ./node_modules/browserify/bin/cmd ./js/app.js -o ./js/bundle.js"
-> ```
->
-> To run the app, spin up an HTTP server (e.g. python -m SimpleHTTPServer) and visit http://localhost/.../myexample/. Alternatively you can run:
+
+ ```sh
+ npm install typescript
+ ```
+
+ To compile the TypeScript in this project:
+
+ ```sh
+ $ ./node_modules/typescript/bin/tsc -p ./js/
+ ```
+
+ To be able to run the output JS files in the browser:
+
+ ```sh
+ $ ./node_modules/browserify/bin/cmd ./js/app.js -o ./js/bundle.js"
+ ```
+
+
+ ```sh
+ $ npm run start
+ ```
+
 
 ### from examples/typescript-react
 
