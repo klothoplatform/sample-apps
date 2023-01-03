@@ -24,7 +24,6 @@ To run the initial application locally, we will follow the instructions below
  $ ./node_modules/browserify/bin/cmd ./js/app.js -o ./js/bundle.js"
  ```
 
-
  ```sh
  $ npm run start
  ```
