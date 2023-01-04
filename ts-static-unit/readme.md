@@ -21,7 +21,7 @@ To run the initial application locally, we will follow the instructions below
  To be able to run the output JS files in the browser:
 
  ```sh
- $ ./node_modules/browserify/bin/cmd ./js/app.js -o ./js/bundle.js"
+ $ ./node_modules/browserify/bin/cmd.js ./js/app.js -o ./js/bundle.js
  ```
 
  ```sh
