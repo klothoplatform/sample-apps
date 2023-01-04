@@ -10,20 +10,21 @@ app.use(express.json());
 const petsByOwner = new Map();
 
 async function addPetName(req, res) {
+  const {pet, owner} = req.body;
   try {
     await petsByOwner.set(owner, pet);
-    res.send(`Added ${pet} as ${owner}'s pet`)
+    res.send(`Added ${pet} as ${owner}'s pet`);
   } catch (error) {
-    res.status(500).send({error})
+    res.status(500).json({message: error.message});
   }
 }
 
 
 async function getAllPets(req, res) {
   try {
-    res.send(Object.fromEntries(await petsByOwner.entries()))
+    res.json(Object.fromEntries(await petsByOwner.entries()));
   } catch (error) {
-    res.status(500).send({error})
+    res.status(500).json({message: error.message});
   }
 }
 
