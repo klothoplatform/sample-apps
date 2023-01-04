@@ -1,0 +1,7 @@
+apiVersion: v2
+appVersion: "0.0.1"
+name: ts-eks-helm
+description: a sample eks app
+kubeVersion: '>= 1.19.0-0'
+type: application
+version: 0.0.1
