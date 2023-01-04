@@ -1,9 +1,3 @@
-/**
- * @klotho::execution_unit {
- *  id = "user-info"
- * }
- */
-
 import {
   DataTypes,
   InferAttributes,
