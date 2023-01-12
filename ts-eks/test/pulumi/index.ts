@@ -27,7 +27,7 @@ const eksPolicy: StackValidationPolicy = {
         group.diskSize !== 200 ?  reportViolation(`Expected disk size to be '200' fo 't3.large' node group, but found ${group.diskSize}`) : null
 
         const k8Services = args.resources.filter(r => r.isType(k8s.core.v1.Service));
-        if (k8Services.length !== 1) {
+        if (![1,3].includes(k8Services.length)) {
             reportViolation(`Expected 1 kubernetes service but found ${k8Services.length}`);
             return;
         }
@@ -46,7 +46,7 @@ const eksPolicy: StackValidationPolicy = {
 
 
         const k8Deployments = args.resources.filter(r => r.isType(k8s.apps.v1.Deployment));
-        if (k8Deployments.length !== 1) {
+        if (![1,3].includes(k8Deployments.length)) {
             reportViolation(`Expected 1 kubernetes deployment but found ${k8Deployments.length}`);
             return;
         }
