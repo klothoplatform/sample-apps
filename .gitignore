@@ -2,3 +2,6 @@
 **/dist/
 **/compiled*/
 .brev
+pipfile
+pipfile.lock
+.pytest_cache/
