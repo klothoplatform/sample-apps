@@ -1,0 +1,8 @@
+aiocache==0.11.1
+aiofiles==0.8.0
+fastapi==0.78.0
+msgpack==1.0.3
+pydantic==1.9.1
+python-multipart==0.0.5
+ujson==5.3.0
+uvicorn[standard]>=0.18.3, <1.0.0
