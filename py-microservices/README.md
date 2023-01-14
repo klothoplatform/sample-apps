@@ -12,8 +12,8 @@ This guide assumes:
 
 run the terminal commands:
 ```sh
-npm install
-npx ts-node index.ts
+make install
+make run
 ```
 
 ```sh
