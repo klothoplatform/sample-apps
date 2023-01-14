@@ -1,0 +1,5 @@
+appendonlydir/
+dump.rdb
+nodes.conf
+redis-server.err
+redis-server.out
