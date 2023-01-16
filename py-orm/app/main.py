@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .user import addUsers, getUser
+from user.user import addUsers, getUser
 
 # @klotho::expose {
 #   id = "app"
