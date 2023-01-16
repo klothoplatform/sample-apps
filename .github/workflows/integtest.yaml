@@ -17,7 +17,13 @@ jobs:
         run: |
           dirs_with_tests="$(
             for d in $(find * -type d -maxdepth 0 || printf ''); do
-              jq &>/dev/null -e '.scripts."integ-test"' $d/package.json && echo "$d"
+              TESTABLE_APP=$(jq &>/dev/null -e '.scripts."integ-test"' $d/package.json && echo "$d")
+              if grep -s -q "^integ-test:" "${d}/Makefile"; then
+                TESTABLE_APP=$d
+              fi
+              if [[ -n "${TESTABLE_APP}" ]]; then
+                echo $TESTABLE_APP
+              fi
             done
             exit 0 # otherwise, will fail if the last dir failed the jq match
           )"
@@ -51,12 +57,28 @@ jobs:
           || '--cpus 1' }}
     steps:
       - uses: actions/checkout@v3
+
+      - name: get sample app language
+        id: get_language
+        run: echo language=$(echo "${{ matrix.app_to_test }}" | cut -d "-" -f 1) >> $GITHUB_OUTPUT
+
       - name: npm install
+        if: steps.get_language.outputs.language == 'ts'
         run: npm install
         working-directory: ${{ matrix.app_to_test }}
+
       - name: tsc
+        if: steps.get_language.outputs.language == 'ts'
         run: npx tsc
         working-directory: ${{ matrix.app_to_test }}
+
+      - name: pipenv install
+        if: steps.get_language.outputs.language == 'py'
+        working-directory: ${{ matrix.app_to_test }}
+        run: |
+          pip install pipenv
+          pipenv install -r requirements.txt
+
       - name: Test redis cluster
         if: matrix.app_to_test == 'ts-redis-cluster'
         uses: vishnudxb/redis-cluster@1.0.5
@@ -81,8 +103,10 @@ jobs:
         run: |
           if [[ -f test/integ_test_hooks/localhost-start.sh ]]; then
             cmd='bash test/integ_test_hooks/localhost-start.sh'
-          else
+          elif [[ "${{ steps.get_language.outputs.language }}" == "ts" ]]; then
             cmd='node dist/index.js'
+          else
+            cmd='make run'
           fi
           echo "Using start command: $cmd"
           $cmd >$RUNNER_TEMP/service.out 2>$RUNNER_TEMP/service.err &
@@ -90,7 +114,8 @@ jobs:
           echo "node-pid=$node_pid" >> $GITHUB_OUTPUT
         env:
           REDIS_PORT: ${{ job.services.redis.ports[6379] }}
-      - name: run tests
+      - name: run typescript tests
+        if: steps.get_language.outputs.language == 'ts'
         working-directory: ${{ matrix.app_to_test }}
         run: |
           # Note: We shouldn't need a global retry, but we do, due to async sets. See issues #44 and #33.
@@ -106,6 +131,24 @@ jobs:
             echo "::endgroup"
           done
           echo "::error title=npm run integ-test failed::Failed after $INTEG_TEST_ATTEMPTS attempts"
+          exit 1
+      - name: run python tests
+        if: steps.get_language.outputs.language == 'py'
+        working-directory: ${{ matrix.app_to_test }}
+        run: |
+          # Note: We shouldn't need a global retry, but we do, due to async sets. See issues #44 and #33.
+          INTEG_TEST_ATTEMPTS=3
+          for try_num in $(seq $INTEG_TEST_ATTEMPTS); do
+            echo "::group::Attempt $try_num"
+            if API_ENDPOINT=http://localhost:3000 make integ-test ; then
+              echo "::notice title=make integ-test succeeded::Succeeded on attempt $try_num"
+              echo "::endgroup"
+              exit
+            fi
+            sleep 5
+            echo "::endgroup"
+          done
+          echo "::error title=make integ-test failed::Failed after $INTEG_TEST_ATTEMPTS attempts"
           exit 1
       - name: service stop
         if: always() && steps.service-start.outputs.node-pid
