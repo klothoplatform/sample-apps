@@ -47,12 +47,12 @@ jobs:
         image: redis
         ports:
         - 6379/tcp
-        # Set health checks to wait until redis has started, but only for ts-redis.
+        # Set health checks to wait until redis has started, but only for ts-redis or py-redis.
         # ${{ condition && ifTrue || ifFalse }} works as a ternary operator.
         # We always need some valid docker option (even in the false case -- an empty string results in an error),
         # so if this isn't a redis service, just set CPUs to 1 as some arbitrary option.
         options: 
-          ${{ matrix.app_to_test == 'ts-redis' 
+          ${{ contains(fromJson('["ts-redis", "py-redis"]'), matrix.app_to_test)
           && '--health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5'
           || '--cpus 1' }}
     steps:
@@ -80,7 +80,7 @@ jobs:
           pipenv install -r requirements.txt
 
       - name: Test redis cluster
-        if: matrix.app_to_test == 'ts-redis-cluster'
+        if: contains(fromJson('["ts-redis-cluster", "py-redis-cluster"]'), matrix.app_to_test)
         uses: vishnudxb/redis-cluster@1.0.5
         with:
           master1-port: 8000
@@ -91,7 +91,7 @@ jobs:
           slave3-port: 8005
            # Running Test
       - name: ping redis cluster
-        if: matrix.app_to_test == 'ts-redis-cluster'
+        if: contains(fromJson('["ts-redis-cluster", "py-redis-cluster"]'), matrix.app_to_test)
         run: |
           sudo apt-get install -y redis-tools
           docker ps -a
