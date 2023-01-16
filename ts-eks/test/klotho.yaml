@@ -58,6 +58,7 @@ execution_units:
                 cpuUtilization: 100
                 memoryUtilization: 100
                 maxReplicas: 4
+            stickinessTimeout: 18000
 exposed:
     app:
         type: apigateway
