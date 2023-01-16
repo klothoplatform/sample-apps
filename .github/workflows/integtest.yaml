@@ -46,7 +46,7 @@ jobs:
       redis:
         image: redis
         ports:
-        - 6379/tcp
+        - 6379:6379/tcp
         # Set health checks to wait until redis has started, but only for ts-redis or py-redis.
         # ${{ condition && ifTrue || ifFalse }} works as a ternary operator.
         # We always need some valid docker option (even in the false case -- an empty string results in an error),
