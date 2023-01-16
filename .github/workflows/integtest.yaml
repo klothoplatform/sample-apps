@@ -106,7 +106,7 @@ jobs:
           elif [[ "${{ steps.get_language.outputs.language }}" == "ts" ]]; then
             cmd='node dist/index.js'
           else
-            cmd='make run'
+            cmd='pipenv run make run'
           fi
           echo "Using start command: $cmd"
           $cmd >$RUNNER_TEMP/service.out 2>$RUNNER_TEMP/service.err &
@@ -140,7 +140,7 @@ jobs:
           INTEG_TEST_ATTEMPTS=3
           for try_num in $(seq $INTEG_TEST_ATTEMPTS); do
             echo "::group::Attempt $try_num"
-            if API_ENDPOINT=http://localhost:3000 make integ-test ; then
+            if API_ENDPOINT=http://localhost:3000 pipenv run make integ-test ; then
               echo "::notice title=make integ-test succeeded::Succeeded on attempt $try_num"
               echo "::endgroup"
               exit
