@@ -19,11 +19,11 @@ make run
 
 Hit your endpoints
 ```sh
-curl -X POST http://localhost:3000/user -d '{"firstName": "john", "lastName": "doe"}' -H "Content-Type: application/json"
-# > success%
+curl -X POST http://localhost:3000/users -d '{"first_name": "john", "last_name": "doe"}' -H "Content-Type: application/json"
+# > Success
 
-curl http://localhost:3000/user/john
-# > doe%
+curl http://localhost:3000/users/john
+# > doe
 ```
 
 ## Compile and Deploy with Klotho
@@ -54,11 +54,11 @@ pulumi up -s py-redis
 
 ```sh
 # Add a user 
-curl -X POST  https://<...>.execute-api.us-east-1.amazonaws.com/stage/user -d '{"firstName": "john", "lastName": "doe"}' -H "Content-Type: application/json"
-# > success
+curl -X POST  https://<...>.execute-api.us-east-1.amazonaws.com/stage/users -d '{"first_name": "john", "last_name": "doe"}' -H "Content-Type: application/json"
+# > Success
 
 # Get a users last name
-curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/user/john
+curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/users/john
 # > doe
 ```
 
