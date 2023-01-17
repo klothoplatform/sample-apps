@@ -1,0 +1,6 @@
+aiocache==0.11.1
+fastapi==0.85.0
+pydantic==1.10.2
+uvicorn[standard]>=0.18.3, <1.0.0
+pytest==7.2.0
+requests==2.28.2
