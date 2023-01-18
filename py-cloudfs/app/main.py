@@ -1,4 +1,3 @@
-from typing import Optional
 from fastapi import FastAPI
 from datetime import datetime
 # @klotho::persist {
@@ -14,19 +13,16 @@ helloPath = "/tmp/hello.txt"
 # }
 app = FastAPI()
 
+
 @app.get("/")
 async def read_root():
-  await setup()
-
-
-  async with aiofiles.open(helloPath, mode='r') as f:
-    result = await f.read()
-  
-    return result
+    await setup()
+    async with aiofiles.open(helloPath, mode='r') as f:
+        result = await f.read()
+        return result
 
 
 async def setup():
-  t = datetime.now()  
-  async with aiofiles.open(helloPath, mode='w') as f:
-    await f.write("Startup at {}".format(t))
-
+    t = datetime.now()
+    async with aiofiles.open(helloPath, mode='w') as f:
+        await f.write("Startup at {}".format(t))
