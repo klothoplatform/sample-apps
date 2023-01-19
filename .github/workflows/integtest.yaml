@@ -116,40 +116,16 @@ jobs:
           REDIS_PORT: ${{ job.services.redis.ports[6379] }}
       - name: run typescript tests
         if: steps.get_language.outputs.language == 'ts'
-        working-directory: ${{ matrix.app_to_test }}
-        run: |
-          # Note: We shouldn't need a global retry, but we do, due to async sets. See issues #44 and #33.
-          INTEG_TEST_ATTEMPTS=3
-          for try_num in $(seq $INTEG_TEST_ATTEMPTS); do
-            echo "::group::Attempt $try_num"
-            if API_ENDPOINT=http://localhost:3000 npm run integ-test ; then
-              echo "::notice title=npm run integ-test succeeded::Succeeded on attempt $try_num"
-              echo "::endgroup"
-              exit
-            fi
-            sleep 5
-            echo "::endgroup"
-          done
-          echo "::error title=npm run integ-test failed::Failed after $INTEG_TEST_ATTEMPTS attempts"
-          exit 1
+        uses: klothoplatform/gh-action-retry@v1
+        with:
+          working-directory: ${{ matrix.app_to_test }}
+          script: API_ENDPOINT=http://localhost:3000 npm run integ-test
       - name: run python tests
         if: steps.get_language.outputs.language == 'py'
-        working-directory: ${{ matrix.app_to_test }}
-        run: |
-          # Note: We shouldn't need a global retry, but we do, due to async sets. See issues #44 and #33.
-          INTEG_TEST_ATTEMPTS=3
-          for try_num in $(seq $INTEG_TEST_ATTEMPTS); do
-            echo "::group::Attempt $try_num"
-            if API_ENDPOINT=http://localhost:3000 pipenv run make integ-test ; then
-              echo "::notice title=make integ-test succeeded::Succeeded on attempt $try_num"
-              echo "::endgroup"
-              exit
-            fi
-            sleep 5
-            echo "::endgroup"
-          done
-          echo "::error title=make integ-test failed::Failed after $INTEG_TEST_ATTEMPTS attempts"
-          exit 1
+        uses: klothoplatform/gh-action-retry@v1
+        with:
+          working-directory: ${{ matrix.app_to_test }}
+          script: API_ENDPOINT=http://localhost:3000 pipenv run make integ-test
       - name: service stop
         if: always() && steps.service-start.outputs.node-pid
         run: kill ${{ steps.service-start.outputs.node-pid }}
