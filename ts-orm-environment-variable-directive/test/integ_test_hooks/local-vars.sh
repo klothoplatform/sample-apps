@@ -1,0 +1,1 @@
+export ORM_CONNECTION_STRING="sqlite::memory:"  >> $GITHUB_ENV

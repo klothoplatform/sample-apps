@@ -10,7 +10,8 @@ This guide assumes:
 ## Run the app locally
 
 ```sh
-npm i 
+npm i
+export ORM_CONNECTION_STRING="sqlite::memory:" 
 npx ts-node index.ts
 ```
 
@@ -30,17 +31,17 @@ curl http://localhost:3000/item/test_key
 run the terminal commands:
 ```sh
 # Compile the app
-npx tsc && klotho . --app ts-sequelize -p aws
+npx tsc && klotho . --app ts-orm-env-var -p aws
 
 # Go into the compiled directory
 cd compiled
 
 # If you didn't set the aws region as indicated in the compiler output, do that now
-pulumi config set aws:region YOUR_REGION -s ts-sequelize
+pulumi config set aws:region YOUR_REGION -s ts-orm-env-var
 
 # Set username and password
-pulumi config set ts-sequelize:sequelizedb_username <USERNAME> -s ts-sequelize
-pulumi config set --secret ts-sequelize:sequelizedb_password <PASSWORD> -s ts-sequelize
+pulumi config set ts-orm-env-var:sequelizedb_username <USERNAME> -s ts-orm-env-var
+pulumi config set --secret ts-orm-env-var:sequelizedb_password <PASSWORD> -s ts-orm-env-var
 
 
 
@@ -48,7 +49,7 @@ pulumi config set --secret ts-sequelize:sequelizedb_password <PASSWORD> -s ts-se
 npm install
 
 # Deploy
-pulumi up -s ts-sequelize
+pulumi up -s ts-orm-env-var
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
@@ -69,5 +70,5 @@ curl  https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/item/test_key
 From within the compiled directory
 ```sh
 # Tear down when done
-pulumi destroy -s ts-sequelize
+pulumi destroy -s ts-orm-env-var
 ```
