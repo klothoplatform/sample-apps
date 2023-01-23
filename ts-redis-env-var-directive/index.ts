@@ -2,6 +2,11 @@ import * as express from "express";
 import { createClient } from 'redis';
 
 const setupRedisClient = async () => {
+  let port: number | undefined = undefined
+  if (process.env.REDIS_NODE_PORT !== undefined) {
+    port = parseInt(process.env.REDIS_NODE_PORT)
+    console.log('using redis port: ', port)
+  }
 /*
 * @klotho::persist {
 *   id = "myRedisNode"
@@ -12,7 +17,7 @@ const setupRedisClient = async () => {
 */
   const client = createClient({socket: {
     host: process.env.REDIS_NODE_HOST,
-    port: parseInt(process.env.REDIS_NODE_PORT!),
+    port,
     keepAlive: 5000
   }})
   await client.connect()

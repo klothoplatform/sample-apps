@@ -114,6 +114,12 @@ jobs:
           echo "node-pid=$node_pid" >> $GITHUB_OUTPUT
         env:
           REDIS_PORT: ${{ job.services.redis.ports[6379] }}
+      - name: local vars
+        working-directory: ${{ matrix.app_to_test }}
+        run: |
+          if [[ -f test/integ_test_hooks/local-vars.sh ]]; then
+            test/integ_test_hooks/local-vars.sh
+          fi
       - name: run typescript tests
         if: steps.get_language.outputs.language == 'ts'
         uses: klothoplatform/gh-action-retry@v1

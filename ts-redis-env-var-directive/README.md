@@ -31,19 +31,19 @@ curl http://localhost:3000/user/john
 run the terminal commands:
 ```sh
 # Compile the app
-npx tsc && klotho . --app ts-redis -p aws
+npx tsc && klotho . --app ts-redis-env-var -p aws
 
 # Go into the compiled directory
 cd compiled
 
 # If you didn't set the aws region as indicated in the compiler output, do that now
-pulumi config set aws:region YOUR_REGION -s ts-redis
+pulumi config set aws:region YOUR_REGION -s ts-redis-env-var
 
 # npm install
 npm install
 
 # Deploy
-pulumi up -s ts-redis
+pulumi up -s ts-redis-env-var
 
 # Outputs: {
 #   apiUrl: 'https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/'
@@ -65,5 +65,5 @@ curl https://<...>.execute-api.us-east-1.amazonaws.com/stage/user/john
 ## Clean Up
 ```sh
 # Tear down when done
-pulumi destroy -s ts-redis
+pulumi destroy -s ts-redis-env-var
 ```
