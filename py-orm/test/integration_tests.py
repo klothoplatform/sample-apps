@@ -13,4 +13,4 @@ def test_put_user():
 def test_get_user():
     actual_get_response = requests.get(f"{apiEndpoint}/{user}")
     json_data = json.loads(actual_get_response.text)
-    assert json_data[0]["User"]["name"] == user
+    assert json_data[0]["name"] == user

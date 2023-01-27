@@ -1,4 +1,3 @@
-
 from sqlalchemy.orm import declarative_base, Session, relationship
 from sqlalchemy import select, create_engine, String, Integer, ForeignKey, Column
 
@@ -8,6 +7,7 @@ from sqlalchemy import select, create_engine, String, Integer, ForeignKey, Colum
 engine = create_engine("sqlite://", echo=True, future=True)
 Base = declarative_base()
 session = Session(engine)
+
 
 class User(Base):
     __tablename__ = "user_account"
@@ -23,6 +23,7 @@ class User(Base):
     def __repr__(self):
         return f"User(id={self.id!r}, name={self.name!r}, fullname={self.fullname!r})"
 
+
 class Address(Base):
     __tablename__ = "address"
 
@@ -34,6 +35,7 @@ class Address(Base):
 
     def __repr__(self):
         return f"Address(id={self.id!r}, email_address={self.email_address!r})"
+
 
 Base.metadata.create_all(engine)
 
@@ -61,4 +63,4 @@ def addUsers():
 def getUser(name: str):
     stmt = select(User).where(User.name == name)
     results = session.execute(statement=stmt).fetchall()
-    return results
+    return [item[0] for item in results]
