@@ -10,14 +10,14 @@ This guide assumes:
 
 ## Run the app locally
 
-To install redis locally follow the instructions on the official redis [getting started page](https://redis.io/docs/getting-started/)
+To install Redis locally, follow the instructions on the official Redis [getting started page](https://redis.io/docs/getting-started/)
 
 ```sh
 npm i 
 npx ts-node index.ts
 ```
 
-Hit your endpoints
+Hit your endpoints:
 ```sh
 curl -X POST http://localhost:3000/user -d '{"firstName": "john", "lastName": "doe"}' -H "Content-Type: application/json"
 # > success%
@@ -28,7 +28,7 @@ curl http://localhost:3000/user/john
 
 ## Compile and Deploy with Klotho
 
-run the terminal commands:
+Run the terminal commands:
 ```sh
 # Compile the app
 npx tsc && klotho . --app ts-redis-env-var -p aws

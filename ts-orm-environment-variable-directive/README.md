@@ -15,7 +15,7 @@ export ORM_CONNECTION_STRING="sqlite::memory:"
 npx ts-node index.ts
 ```
 
-Hit your endpoints
+Hit your endpoints:
 ```sh
 curl http://localhost:3000/item -X POST -d '{"key": "test_key", "value": "test_value"}' -H "Content-Type: application/json"
 # > success%
@@ -28,7 +28,7 @@ curl http://localhost:3000/item/test_key
 
 ## Compile and Deploy with Klotho
 
-run the terminal commands:
+Run the terminal commands:
 ```sh
 # Compile the app
 npx tsc && klotho . --app ts-orm-env-var -p aws
@@ -42,8 +42,6 @@ pulumi config set aws:region YOUR_REGION -s ts-orm-env-var
 # Set username and password
 pulumi config set ts-orm-env-var:sequelizedb_username <USERNAME> -s ts-orm-env-var
 pulumi config set --secret ts-orm-env-var:sequelizedb_password <PASSWORD> -s ts-orm-env-var
-
-
 
 # npm install
 npm install
@@ -67,7 +65,7 @@ curl  https://<...>.execute-api.<YOUR_REGION>.amazonaws.com/stage/item/test_key
 # > 100
 ```
 ## Clean Up
-From within the compiled directory
+From within the `compiled` directory
 ```sh
 # Tear down when done
 pulumi destroy -s ts-orm-env-var
