@@ -1,4 +1,4 @@
-app: ts-eks
+app: ondemandddb
 provider: aws
 path: .
 out_dir: compiled
@@ -6,6 +6,9 @@ defaults:
     execution_unit:
         type: lambda
         pulumi_params_by_type:
+            eks:
+                nodeType: fargate
+                replicas: 2
             fargate:
                 cpu: 256
                 memory: 512
@@ -29,36 +32,33 @@ defaults:
         orm:
             type: rds_postgres
             pulumi_params_by_type:
+                cockroachdb_serverless: {}
                 rds_postgres:
                     allocatedStorage: 20
                     engineVersion: "13.7"
                     instanceClass: db.t4g.micro
                     skipFinalSnapshot: true
-        redis:
+        redis_node:
             type: elasticache
             pulumi_params_by_type:
                 elasticache:
                     nodeType: cache.t3.micro
                     numCacheNodes: 1
+        redis_cluster:
+            type: memorydb
+            pulumi_params_by_type:
+                memorydb:
+                    nodeType: db.t4g.small
+                    numReplicasPerShard: "1"
+                    numShards: "2"
     pubsub:
         type: sns
 execution_units:
     main:
-        type: eks
+        type: fargate
         pulumi_params:
-            nodeType: node
-            replicas: 1
-            nodeConstraints:
-                instanceType: c4.large
-                diskSize: 200
-            limits: 
-                cpu: 1
-                memory: 256
-            autoscalingConfig:
-                cpuUtilization: 100
-                memoryUtilization: 100
-                maxReplicas: 4
-            stickinessTimeout: 18000
+            memorySize: 512
+            timeout: 180
 exposed:
     app:
         type: alb
