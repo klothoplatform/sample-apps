@@ -1,6 +1,6 @@
 #!/bin/bash
 
-See #212
+# See #212
 
 set -euo pipefail
 
@@ -32,7 +32,7 @@ function wait_for_delete() {
   exit 1
 }
 
-sg_names="$(cat pulumi-export.json | jq -r '.deployment.resources[] | select(.type ==  "aws:memorydb/subnetGroup:SubnetGroup") | .outputs.name')"
+sg_names="$(cat "$tmp_file" | jq -r '.deployment.resources[] | select(.type ==  "aws:memorydb/subnetGroup:SubnetGroup") | .outputs.name')"
 for sg_name in $sg_names ; do
   cluster_names="$(aws --region "$AWS_REGION" memorydb describe-clusters | jq -r '.Clusters[] | select(.SubnetGroupName == $sgName) | .Name' --arg sgName "$sg_name")"
   for cluster_name in $cluster_names ; do
