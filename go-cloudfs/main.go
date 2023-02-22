@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -28,7 +27,6 @@ func main() {
 	 */
 	bucket, err := blob.OpenBucket(context.Background(), fmt.Sprintf("file://%s", path))
 	if err != nil {
-		log.Fatal(err.Error())
 		os.Exit(1)
 	}
 	defer bucket.Close()
@@ -38,10 +36,8 @@ func main() {
 
 	r.Post("/write-file/{path}", func(writer http.ResponseWriter, req *http.Request) {
 		path := chi.URLParam(req, "path")
-		fmt.Println(path)
 		w, err := bucket.NewWriter(req.Context(), path, nil)
 		if err != nil {
-			log.Fatal(err)
 			writer.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(err.Error()))
 			return
@@ -49,13 +45,11 @@ func main() {
 		_, writeErr := fmt.Fprintln(w, "Hello, World!")
 		closeErr := w.Close()
 		if writeErr != nil {
-			log.Fatal(writeErr)
 			writer.WriteHeader(http.StatusInternalServerError)
 			writer.Write([]byte(writeErr.Error()))
 			return
 		}
 		if closeErr != nil {
-			log.Fatal(closeErr)
 			writer.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(closeErr.Error()))
 			return
@@ -73,7 +67,6 @@ func main() {
 		}
 		closeErr := response.Close()
 		if closeErr != nil {
-			log.Fatal(closeErr)
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(closeErr.Error()))
 			return

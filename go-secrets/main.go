@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
@@ -31,7 +30,6 @@ func main() {
 	v, err := runtimevar.OpenVariable(context.TODO(), fmt.Sprintf("file://%s?decoder=string", path))
 	if err != nil {
 		log.Fatal(err.Error())
-		os.Exit(1)
 	}
 	defer v.Close()
 
@@ -40,12 +38,14 @@ func main() {
 
 	r.Get("/", func(w http.ResponseWriter, req *http.Request) {
 		snapshot, err := v.Latest(req.Context())
-		fmt.Printf("%+v\n", v)
 		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(err.Error()))
+			return
 		}
 		secretValue, ok := snapshot.Value.(string)
 		if !ok {
+			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("Unable to receive secret value. Secret is not a string"))
 			return
 		}
