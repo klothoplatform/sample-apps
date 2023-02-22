@@ -1,4 +1,4 @@
-module github.com/klothoplatform/go-fs
+module github.com/klothoplatform/go-cloudfs
 
 go 1.18
 
