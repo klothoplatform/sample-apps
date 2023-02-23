@@ -1,6 +1,6 @@
 # Media Storage Sample App
 
-The `ts-ms-lambda` sample application demonstrates how to use the `@klotho::exec_unit` annotation to split an application up into smaller, functional units.
+The `ts-ms-lambda` sample application demonstrates how to use the `@klotho::expose` annotation to serve an application on a public endpoint
 
 ## Prerequisites
 

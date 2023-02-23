@@ -1,6 +1,6 @@
 # EKS Sample App
 
-The `ts-eks` sample application demonstrates how to use the `@klotho::exec_unit` annotation to run nodes on eks.
+The `ts-eks` sample application demonstrates how to run nodes on eks.
 
 ## Prerequisites
 
