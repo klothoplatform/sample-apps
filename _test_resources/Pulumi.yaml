@@ -1,0 +1,3 @@
+name: test_resources
+runtime: nodejs
+description: Shared test resources
