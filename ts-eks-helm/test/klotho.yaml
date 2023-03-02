@@ -1,9 +1,0 @@
-app: ts-eks-helm
-provider: aws
-path: .
-out_dir: compiled
-execution_units:
-    main:
-        type: eks
-        helm_chart_options:
-            install: true
