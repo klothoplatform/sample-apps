@@ -49,8 +49,6 @@ const sg = new aws.ec2.SecurityGroup('sg', {
     }
 })
 
-export const subnets = vpc.subnets
-
 vpc.subnets.apply((subnets) => {
     const cidrBlocks = pulumi.all(subnets.map(s => s.cidrBlock)).apply(blocks => blocks.filter(b => b != undefined) as string[])
     for (const subnet of subnets) {
