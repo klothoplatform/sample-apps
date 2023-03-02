@@ -50,17 +50,16 @@ const sg = new aws.ec2.SecurityGroup('sg', {
 })
 
 vpc.subnets.apply((subnets) => {
-    const cidrBlocks = pulumi.all(subnets.map(s => s.cidrBlock)).apply(blocks => blocks.filter(b => b != undefined) as string[])
-    for (const subnet of subnets) {
-        subnet.id.apply((id) => {
-            new aws.ec2.SecurityGroupRule(`${id}-ingress`, {
-                type: 'ingress',
-                cidrBlocks: cidrBlocks,
-                fromPort: 0,
-                protocol: '-1',
-                toPort: 0,
-                securityGroupId: sg.id,
-            })
-        })
-    }
+    const cidrBlocks = pulumi.all(subnets.map(s => s.cidrBlock)).apply(blocks => {
+        const s = new Set(blocks.filter(b => b != undefined) as string[])
+        return [...s]
+    })
+    new aws.ec2.SecurityGroupRule(`ingress`, {
+        type: 'ingress',
+        cidrBlocks: cidrBlocks,
+        fromPort: 0,
+        protocol: '-1',
+        toPort: 0,
+        securityGroupId: sg.id,
+    })
 })
