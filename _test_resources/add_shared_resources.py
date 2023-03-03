@@ -25,6 +25,7 @@ def get_pulumi_resources():
                         ],
                     }
                 }
+        p = p.parent
     return None
 
 def update_pulumi_app_config(app_yaml_path, resources):
