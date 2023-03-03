@@ -11,7 +11,7 @@ def get_pulumi_resources():
         if resources_path.exists():
             print(f"found resources json at {resources_path}")
             with open(resources_path) as output:
-                output_json = json.loads(output)
+                output_json = json.load(output)
                 resources = output_json.get('deployment', {}).get('resources', [])
                 return {
                     "klo:vpc": {
