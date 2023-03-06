@@ -198,7 +198,7 @@ let cloudwatchGroup = new aws.cloudwatch.LogGroup(`persist-redis-${clusterName}-
     retentionInDays: 0,
 })
 
-const elasticachesubnetGroup = new aws.elasticache.SubnetGroup(`${clusterName}-subnet-group`{
+const elasticachesubnetGroup = new aws.elasticache.SubnetGroup(`${clusterName}-subnet-group`,{
         subnetIds: vpc.privateSubnetIds,
         tags: {
             Name: 'Klotho DB subnet group',
@@ -206,7 +206,7 @@ const elasticachesubnetGroup = new aws.elasticache.SubnetGroup(`${clusterName}-s
     }
 )
 
-return new aws.elasticache.Cluster(
+new aws.elasticache.Cluster(
     clusterName,
     {
         engine: 'redis',
