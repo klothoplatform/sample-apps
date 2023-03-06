@@ -80,7 +80,7 @@ const subnetGroup = new aws.rds.SubnetGroup('rds-subnet-group', {
 
 
 // create the db resources
-const dbName = "TestDB"
+const dbName = "test-db"
 
 const rds = new aws.rds.Instance(
     dbName,
