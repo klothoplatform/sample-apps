@@ -86,6 +86,9 @@ const rds = new aws.rds.Instance(
     dbName,
     {
         instanceClass: 'db.t4g.micro',
+        allocatedStorage:  20,
+        skipFinalSnapshot: true,
+        engineVersion:     "13.7",
         engine: 'postgres',
         dbName: dbName,
         username,
