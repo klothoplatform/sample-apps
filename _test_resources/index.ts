@@ -213,7 +213,6 @@ new aws.elasticache.Cluster(
     clusterName,
     {
         engine: 'redis',
-        clusterId: clusterName,
         nodeType:      "cache.t3.micro",
         numCacheNodes: 1,
         logDeliveryConfigurations: [
@@ -249,7 +248,6 @@ const memdbSubnetGroup = new aws.memorydb.SubnetGroup(`${memdbClusterName}-subne
 new aws.memorydb.Cluster(
     memdbClusterName,
     {
-        name: memdbClusterName,
         numReplicasPerShard: 1,
         numShards:           2,
         aclName: 'open-access',
