@@ -247,7 +247,7 @@ const memdbSubnetGroup = new aws.memorydb.SubnetGroup(`${memdbClusterName}-subne
 )
 
 new aws.memorydb.Cluster(
-    clusterName,
+    memdbClusterName,
     {
         name: memdbClusterName,
         numReplicasPerShard: 1,
