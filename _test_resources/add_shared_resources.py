@@ -6,6 +6,7 @@ from pathlib import Path
 
 def get_pulumi_resources():
     p = Path('.').resolve()
+    print(p)
     while p != Path('/'):
         resources_path = p / 'test_resources.json'
         if resources_path.exists():
@@ -14,15 +15,11 @@ def get_pulumi_resources():
                 output_json = json.load(output)
                 resources = output_json.get('deployment', {}).get('resources', [])
 
-                rdsInstanceIdentifier = [r['id'] for r in resources if r['type'] == "aws:rds/instance:Instance"]
-                rdsProxyIdentifier = [r['id'] for r in resources if r['type'] == "aws:rds/proxy:Proxy"]
+                rdsInstanceIdentifier = next(r for r in resources if r['type'] == "aws:rds/instance:Instance")['id']
+                rdsProxyIdentifier = next(r for r in resources if r['type'] == "aws:rds/proxy:Proxy")['id']
 
-                elasticacheCluster = [r['id'] for r in resources if r['type'] == "aws:elasticache/cluster:Cluster"]
-                memroyDBCluster = [r['id'] for r in resources if r['type'] == "aws:memorydb/cluster:Cluster"]
-
-    
-
-                # const rdsInstanceIdentifier = next(r for r in resources if r["type"] == "aws:rds/instance:Instance")['id']
+                elasticacheCluster = next(r for r in resources if r['type'] == "aws:elasticache/cluster:Cluster")['id']
+                memroyDBCluster = next(r for r in resources if r['type'] == "aws:memorydb/cluster:Cluster")['id']
 
                 return {
                     "klo:vpc": {
