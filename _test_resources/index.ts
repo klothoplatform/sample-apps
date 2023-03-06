@@ -214,6 +214,8 @@ new aws.elasticache.Cluster(
     {
         engine: 'redis',
         clusterId: clusterName,
+        nodeType:      "cache.t3.micro",
+        numCacheNodes: 1,
         logDeliveryConfigurations: [
             {
                 destination: cloudwatchGroup.name,
@@ -248,6 +250,8 @@ new aws.memorydb.Cluster(
     clusterName,
     {
         name: memdbClusterName,
+        numReplicasPerShard: 1,
+        numShards:           2,
         aclName: 'open-access',
         nodeType: 'db.t4g.small',
         securityGroupIds: [sg.id],
