@@ -35,23 +35,28 @@ def get_pulumi_resources():
                     "klo:rds": {
                         "sqlAlchemy": {
                           "dbInstanceIdentifier": rdsInstanceIdentifier,
-                          "proxy": rdsProxyIdentifier
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
                         },
                         "usersDB": {
-                           "dbInstanceIdentifier": rdsInstanceIdentifier,
-                          "proxy": rdsProxyIdentifier
+                          "dbInstanceIdentifier": rdsInstanceIdentifier,
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
                         },
                         "PostsDB": {
                           "dbInstanceIdentifier": rdsInstanceIdentifier,
-                          "proxy": rdsProxyIdentifier
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
                         },
                         "sequelizeDB": {
                           "dbInstanceIdentifier": rdsInstanceIdentifier,
-                          "proxy": rdsProxyIdentifier
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
                         },
                         "typeormDB": {
                           "dbInstanceIdentifier": rdsInstanceIdentifier,
-                          "proxy": rdsProxyIdentifier
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
                         }
                     },
                     "klo:elasticache": {
