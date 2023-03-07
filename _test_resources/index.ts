@@ -2,6 +2,9 @@ import * as aws from '@pulumi/aws'
 import * as awsx from '@pulumi/awsx'
 import * as pulumi from '@pulumi/pulumi'
 
+const tags = {
+    "klothoIntegrationTests": "sample-apps-pro"
+}
 
 const config = new pulumi.Config()
 
@@ -11,6 +14,7 @@ const vpc = new awsx.ec2.Vpc("vpc", {
     enableDnsSupport: true,
     numberOfAvailabilityZones: 2,
     subnetSpecs: [{ type: 'Public' }, { type: 'Private' }],
+    tags
 })
 
 
@@ -46,6 +50,7 @@ const sg = new aws.ec2.SecurityGroup('sg', {
     ],
     tags: {
       test: config.name,
+      ...tags
     }
 })
 
@@ -75,6 +80,7 @@ const subnetGroup = new aws.rds.SubnetGroup('rds-subnet-group', {
     subnetIds: vpc.privateSubnetIds,
     tags: {
         Name: 'Klotho DB subnet group',
+        ...tags
     },
 })
 
@@ -96,6 +102,7 @@ const rds = new aws.rds.Instance(
         iamDatabaseAuthenticationEnabled: true,
         dbSubnetGroupName: subnetGroup.name,
         vpcSecurityGroupIds: [sg.id],
+        tags
     }
 )
 
@@ -103,6 +110,7 @@ const rds = new aws.rds.Instance(
 
 let rdsSecret = new aws.secretsmanager.Secret('rds-secret', {
     recoveryWindowInDays: 0,
+    tags
 })
 
 const rdsSecretValues = {
@@ -135,6 +143,7 @@ const role = new aws.iam.Role('orm-secret-role', {
             },
         ],
     },
+    tags
 })
 
 // prettier-ignore
@@ -150,6 +159,7 @@ const policy = new aws.iam.Policy('orm-policy', {
             },
         ],
     },
+    tags
 })
 
 const attach = new aws.iam.RolePolicyAttachment(`${dbName}-ormattach`, {
@@ -174,6 +184,7 @@ const proxy = new aws.rds.Proxy('rds-proxy', {
             secretArn: secret.arn,
         },
     ],
+    tags
 })
 
 const proxyDefaultTargetGroup = new aws.rds.ProxyDefaultTargetGroup(`${dbName}`, {
@@ -199,13 +210,12 @@ const logGroupName = `/aws/elasticache/${clusterName}-persist-redis`
 let cloudwatchGroup = new aws.cloudwatch.LogGroup(`persist-redis-${clusterName}-lg`, {
     name: `${logGroupName}`,
     retentionInDays: 0,
+    tags
 })
 
 const elasticachesubnetGroup = new aws.elasticache.SubnetGroup(`${clusterName}-subnet-group`,{
         subnetIds: vpc.privateSubnetIds,
-        tags: {
-            Name: 'Klotho DB subnet group',
-        },
+        tags
     }
 )
 
@@ -231,6 +241,7 @@ new aws.elasticache.Cluster(
         ],
         subnetGroupName: elasticachesubnetGroup.name,
         securityGroupIds: [sg.id],
+        tags
     },
 )
 
@@ -239,9 +250,7 @@ new aws.elasticache.Cluster(
 const memdbClusterName = 'memorydb-cluster'
 const memdbSubnetGroup = new aws.memorydb.SubnetGroup(`${memdbClusterName}-subnetgroup`,{
         subnetIds: vpc.privateSubnetIds,
-        tags: {
-            Name: 'Klotho DB subnet group',
-        },
+        tags
     }
 )
 
@@ -255,5 +264,6 @@ new aws.memorydb.Cluster(
         securityGroupIds: [sg.id],
         snapshotRetentionLimit: 7,
         subnetGroupName: memdbSubnetGroup.name,
+        tags
     },
 )
