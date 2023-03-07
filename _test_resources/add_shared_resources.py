@@ -6,6 +6,7 @@ from pathlib import Path
 
 def get_pulumi_resources():
     p = Path('.').resolve()
+    print(p)
     while p != Path('/'):
         resources_path = p / 'test_resources.json'
         if resources_path.exists():
@@ -13,6 +14,13 @@ def get_pulumi_resources():
             with open(resources_path) as output:
                 output_json = json.load(output)
                 resources = output_json.get('deployment', {}).get('resources', [])
+
+                rdsInstanceIdentifier = next(r for r in resources if r['type'] == "aws:rds/instance:Instance")['id']
+                rdsProxyIdentifier = next(r for r in resources if r['type'] == "aws:rds/proxy:Proxy")['id']
+
+                elasticacheCluster = next(r for r in resources if r['type'] == "aws:elasticache/cluster:Cluster")['id']
+                memroyDBCluster = next(r for r in resources if r['type'] == "aws:memorydb/cluster:Cluster")['id']
+
                 return {
                     "klo:vpc": {
                         "id": next(r for r in resources if r["type"] == "aws:ec2/vpc:Vpc")['id'],
@@ -23,6 +31,40 @@ def get_pulumi_resources():
                         "publicSubnetIds": [
                             r['id'] for r in resources if r['type'] == 'aws:ec2/subnet:Subnet' and 'public' in r['urn'].split('::')[-1]
                         ],
+                    },
+                    "klo:rds": {
+                        "sqlAlchemy": {
+                          "dbInstanceIdentifier": rdsInstanceIdentifier,
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
+                        },
+                        "usersDB": {
+                          "dbInstanceIdentifier": rdsInstanceIdentifier,
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
+                        },
+                        "PostsDB": {
+                          "dbInstanceIdentifier": rdsInstanceIdentifier,
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
+                        },
+                        "sequelizeDB": {
+                          "dbInstanceIdentifier": rdsInstanceIdentifier,
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
+                        },
+                        "typeormDB": {
+                          "dbInstanceIdentifier": rdsInstanceIdentifier,
+                          "proxy": rdsProxyIdentifier,
+                          "dbName": "testdb"
+                        }
+                    },
+                    "klo:elasticache": {
+                        "redis": elasticacheCluster,
+                        "myRedisNode":elasticacheCluster,
+                    },
+                    "klo:memorydb": {
+                        "redis": memroyDBCluster,
                     }
                 }
         p = p.parent
