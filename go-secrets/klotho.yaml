@@ -1,0 +1,4 @@
+
+config:
+  mySecret:
+    path: my_secret.key
