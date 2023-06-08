@@ -50,7 +50,9 @@ func main() {
 			return
 		}
 
-		w.Write([]byte(secretValue))
+		sv2, _ := GetSecret2(req.Context())
+
+		w.Write([]byte(fmt.Sprintf("%s,\n%s", secretValue, sv2)))
 	})
 	fmt.Println("Listening on :3000")
 

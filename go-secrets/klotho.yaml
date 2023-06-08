@@ -2,3 +2,5 @@
 config:
   mySecret:
     path: my_secret.key
+  myOtherSecret:
+    path: my_secret_2.key
